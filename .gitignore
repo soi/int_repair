@@ -1,0 +1,6 @@
+test*.php
+documentation/.*
+match_media/
+classes/upload.php
+db_dumb/paul_*
+smarty/
