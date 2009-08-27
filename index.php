@@ -12,21 +12,27 @@
 
         global $db;
         
+        $everybody_sites = array('user_overview', 
+                                 'customer_overview', 
+                                 'cash_overview', 
+                                 'job_overview');                                 
+        
         $tech_sites      = array('add_job', 
-                                 'add_customer',
-                                 'edit_customer', 
                                  'edit_job', 
                                  'complete_add_job', 
-                                 'complete_add_customer', 
-                                 'complete_edit_customer', 
                                  'complete_edit_job', 
                                  'job_overview', 
                                  'user_overview');
                             
         $managment_sites = array('add_cash',
+                                 'add_customer',
                                  'create_bill',
                                  'cash_overview',
                                  'complete_add_cash',
+                                 'complete_add_customer',
+                                 'complete_edit_customer',
+                                 'customer_info',
+                                 'edit_customer',
                                  'reports_overview',
                                  'user_overview');
                                                            
@@ -35,13 +41,13 @@
                                  'complete_edit_user_rights', 
                                  'edit_user_rights');
         
-        $perm_sites = array();
+        $perm_sites = $everybody_sites;
         if ($_SESSION['admin_permission']) {
-            $perm_sites = array_merge($admin_sites, $tech_sites, $managment_sites);
+            $perm_sites = array_merge($perm_sites, $admin_sites, $tech_sites, $managment_sites);
         }
         else {
             if ($_SESSION['tech_permission']) {
-                $perm_sites = $tech_sites;
+                $perm_sites = array_merge($perm_sites, $tech_sites);
             }
             if ($_SESSION['managment_permission']) {
                 $perm_sites = array_merge($perm_sites, $managment_sites);

@@ -118,7 +118,23 @@
         assign_users();
         $smarty->assign('content', $smarty->fetch("user_overview.tpl"));
         return true;
-     }     
+     }    
+     
+     //DETAILS
+     
+     
+     function display_customer_info() {
+
+        if (valid_request(array(isset($_GET['customer_id'])))) {
+        
+            global $smarty;
+    
+            assign_customer_info($_GET['customer_id']);
+            $smarty->assign('content', $smarty->fetch("customer_info.tpl"));
+            return true;
+        }
+     } 
+     
     
     // MISC
     

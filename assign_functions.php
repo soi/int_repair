@@ -4,6 +4,44 @@
     //|Basic functions each assigning one template variable|
     //|----------------------------------------------------|
     
+    function assign_customer_info($customer_id) {
+    
+        global $smarty;
+        global $db;
+        
+        $db->run("get_customer_info(".$customer_id.")");
+        if ($db->error_result) {
+            display_errors(1);
+            return true;
+        }
+        else {
+            $smarty->assign('customer_info', $db->get_result_row());
+            return true;
+        }
+        
+        
+    }
+    
+    
+    function assign_customers() {
+
+        global $smarty;
+        global $db;
+
+        $db->run("get_customers()");
+        if ($db->error_result) {
+            display_errors(1);
+            return true;
+        }
+        else {
+            $smarty->assign('customers', $db->get_result_array());
+            return true;
+        }
+
+
+    }
+    
+    
 
     function assign_error_messages($errors) {
 

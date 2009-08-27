@@ -1,5 +1,77 @@
 <?php 
 
+    function complete_edit_customer() {
+        if (valid_request(array(isset($_GET['customer_id']),
+                                isset($_POST['first_name']),
+                                isset($_POST['last_name']),
+                                isset($_POST['title_addition']),
+                                isset($_POST['firm_name']),
+                                isset($_POST['street']),
+                                isset($_POST['plz']),
+                                isset($_POST['town']),
+                                isset($_POST['tel_1']),
+                                isset($_POST['tel_2']),
+                                isset($_POST['fax']),
+                                isset($_POST['email'])))) {
+        }
+
+        global $db;
+        global $smarty;
+
+        if (strlen($_POST['first_name']) > 45)
+            $errors[] = 52;
+        if (strlen($_POST['last_name']) > 45)
+            $errors[] = 51;
+        if (strlen($_POST['title_addition']) > 20)
+            $errors[] = 53;
+        if (strlen($_POST['firm_name']) > 45)
+            $errors[] = 54;
+        if (strlen($_POST['street']) > 45)
+            $errors[] = 55;
+        if (strlen($_POST['plz']) > 10)
+            $errors[] = 56;
+        if (strlen($_POST['tel_1']) > 20)
+            $errors[] = 57;
+        if (strlen($_POST['tel_2']) > 20)
+            $errors[] = 58;
+        if (strlen($_POST['fax']) > 20)
+            $errors[] = 59;
+        if (strlen($_POST['email']) > 45)
+            $errors[] = 60;
+        if (strlen($_POST['town']) > 45)
+            $errors[] = 61;
+
+        if (isset($errors)) {
+            display_errors($errors);
+            return true;
+        }
+
+        $sql = "edit_customer(".$_GET['customer_id'].",
+                              '".$_POST['first_name']."',
+                              '".$_POST['last_name']."',
+                              '".$_POST['title_addition']."',
+                              '".$_POST['firm_name']."',
+                              '".$_POST['street']."',
+                              '".$_POST['plz']."',
+                              '".$_POST['tel_1']."',
+                              '".$_POST['tel_2']."',
+                              '".$_POST['fax']."',
+                              '".$_POST['email']."',
+                              '".$_POST['town']."')";
+        echo $sql;
+        $db->run($sql);
+        if ($db->error_result)
+             display_errors(1);
+        else {
+            display_success("edit_customer");
+            $smarty->assign('content', $smarty->fetch("succes.tpl"));
+        }
+        return true;    
+    }
+    
+    
+    
+
     function complete_add_customer() {
         if (valid_request(array(isset($_POST['first_name']),
                                 isset($_POST['last_name']),
