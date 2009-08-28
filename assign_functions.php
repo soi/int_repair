@@ -101,6 +101,25 @@
     }
     
     
+    function assign_latest_jobs ($offset, $length) {
+        
+        global $smarty;
+        global $db;
+
+        $sql = "get_latest_jobs(".$offset.", ".$length.")";
+        $db->run($sql);
+        if ($db->error_result) {
+            display_errors(1);
+            return true;
+        }
+        else {
+            $smarty->assign('latest_jobs', $db->get_result_array());
+            return true;
+        }    
+        
+    }
+    
+    
     function assign_users() {
 
         global $smarty;

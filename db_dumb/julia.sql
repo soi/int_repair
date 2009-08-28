@@ -44,7 +44,7 @@ CREATE TABLE `customer` (
   `email` varchar(45) NOT NULL,
   `town` varchar(45) NOT NULL,
   PRIMARY KEY (`c_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,6 +53,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+INSERT INTO `customer` VALUES (1,'Felix','Stiehler','Dr. Phil.','Google','Strasse','','','','','',''),(2,'Felix2','Stiehler1','Dr. Phil.3','Google4','Strasse5','154236','tel_18','tel_29','fax10','mymail11','Berlin7');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +66,6 @@ DROP TABLE IF EXISTS `job`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `job` (
   `j_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `date` datetime NOT NULL,
   `finished` tinyint(3) unsigned NOT NULL,
   `bid_needed` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `description` text NOT NULL,
@@ -79,8 +79,11 @@ CREATE TABLE `job` (
   `c_plz` varchar(10) NOT NULL,
   `c_title_addition` varchar(20) NOT NULL,
   `c_id` int(10) unsigned NOT NULL,
+  `short_description` varchar(150) NOT NULL,
+  `c_fax` varchar(20) NOT NULL,
+  `date` datetime NOT NULL,
   PRIMARY KEY (`j_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,7 +92,64 @@ CREATE TABLE `job` (
 
 LOCK TABLES `job` WRITE;
 /*!40000 ALTER TABLE `job` DISABLE KEYS */;
+INSERT INTO `job` VALUES (1,0,0,'TV broken','Felix','Stiehler','','','Strasse','','','','',1,'1','','2009-08-27 20:20:01'),(2,0,0,'PC broken','Felix','Stiehler','','','Strasse','','','','',1,'23','','2009-08-27 22:20:01'),(3,0,0,'Graka broken','Felix2','Stiehler1','tel_18','tel_29','Strasse5','Berlin7','mymail11','154236','',2,'345','fax10','2009-08-27 18:20:01'),(9,0,1,'lang','Felix','Stiehler','','','Strasse','','','','',1,'Graka im Eimer','','2009-08-28 03:02:57');
 /*!40000 ALTER TABLE `job` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `job_service`
+--
+
+DROP TABLE IF EXISTS `job_service`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `job_service` (
+  `jsv_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `jsvt_id` int(10) unsigned NOT NULL,
+  `u_id` int(10) unsigned NOT NULL,
+  `date` datetime NOT NULL,
+  `desc` text NOT NULL,
+  PRIMARY KEY (`jsv_id`),
+  KEY `FK_job_service_1` (`jsvt_id`),
+  KEY `FK_job_service_2` (`u_id`),
+  CONSTRAINT `FK_job_service_1` FOREIGN KEY (`jsvt_id`) REFERENCES `job_service_type` (`jsvt_id`),
+  CONSTRAINT `FK_job_service_2` FOREIGN KEY (`u_id`) REFERENCES `user` (`u_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `job_service`
+--
+
+LOCK TABLES `job_service` WRITE;
+/*!40000 ALTER TABLE `job_service` DISABLE KEYS */;
+INSERT INTO `job_service` VALUES (1,1,1,'0000-00-00 00:00:00','tolle montage');
+/*!40000 ALTER TABLE `job_service` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `job_service_type`
+--
+
+DROP TABLE IF EXISTS `job_service_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `job_service_type` (
+  `jsvt_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` char(100) NOT NULL,
+  `price` float NOT NULL,
+  PRIMARY KEY (`jsvt_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `job_service_type`
+--
+
+LOCK TABLES `job_service_type` WRITE;
+/*!40000 ALTER TABLE `job_service_type` DISABLE KEYS */;
+INSERT INTO `job_service_type` VALUES (1,'Montage PC',10);
+/*!40000 ALTER TABLE `job_service_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -105,7 +165,7 @@ CREATE TABLE `job_status` (
   `j_id` int(10) unsigned NOT NULL,
   `u_id` int(10) unsigned NOT NULL,
   `date` datetime NOT NULL,
-  `desc` char(255) NOT NULL,
+  `description` char(255) NOT NULL,
   PRIMARY KEY (`js_id`),
   KEY `FK_job_status_1` (`jst_id`),
   KEY `FK_job_status_2` (`j_id`),
@@ -113,7 +173,7 @@ CREATE TABLE `job_status` (
   CONSTRAINT `FK_job_status_1` FOREIGN KEY (`jst_id`) REFERENCES `job_status_type` (`jst_id`),
   CONSTRAINT `FK_job_status_2` FOREIGN KEY (`j_id`) REFERENCES `job` (`j_id`),
   CONSTRAINT `FK_job_status_3` FOREIGN KEY (`u_id`) REFERENCES `user` (`u_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,6 +182,7 @@ CREATE TABLE `job_status` (
 
 LOCK TABLES `job_status` WRITE;
 /*!40000 ALTER TABLE `job_status` DISABLE KEYS */;
+INSERT INTO `job_status` VALUES (4,1,1,1,'2005-11-30 12:00:00','111'),(5,2,1,1,'2005-11-30 12:45:00','211'),(6,4,2,1,'2005-11-30 12:50:00','121'),(7,1,2,2,'2005-11-30 12:12:00','122'),(8,8,9,1,'2009-08-28 03:02:57','');
 /*!40000 ALTER TABLE `job_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,7 +197,7 @@ CREATE TABLE `job_status_type` (
   `jst_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`jst_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,6 +206,7 @@ CREATE TABLE `job_status_type` (
 
 LOCK TABLES `job_status_type` WRITE;
 /*!40000 ALTER TABLE `job_status_type` DISABLE KEYS */;
+INSERT INTO `job_status_type` VALUES (1,'Gerät eingegangen'),(2,'Gerät in Bearbeitung (Fehlersuche)'),(3,'KV erstellt'),(4,'Ersatzteile bestellt'),(5,'Gerät eingeschickt'),(6,'Gerät abholbereit'),(7,'Gerät an den Kunden versandt'),(8,'Auftrag entgegen genommen');
 /*!40000 ALTER TABLE `job_status_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -180,6 +242,29 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'julia'
 --
+/*!50003 DROP FUNCTION IF EXISTS `split` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 FUNCTION `split`(
+  x VARCHAR(255),
+  delim VARCHAR(12),
+  pos INT
+) RETURNS varchar(255) CHARSET latin1
+RETURN REPLACE(SUBSTRING(SUBSTRING_INDEX(x, delim, pos),
+       LENGTH(SUBSTRING_INDEX(x, delim, pos -1)) + 1),
+       delim, '') */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `add_customer` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -231,6 +316,102 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `add_job` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `add_job`(IN _user_id INTEGER UNSIGNED,
+                                    IN _customer_id INTEGER UNSIGNED,
+                                    IN _bid_needed TINYINT UNSIGNED,
+                                    IN _description TEXT,
+                                    IN _short_description char(150),
+                                    IN _c_first_name char(45),
+                                    IN _c_last_name char(45),
+                                    IN _c_street char(45),
+                                    IN _c_plz char(10),
+                                    IN _c_town char(45),
+                                    IN _c_tel_1 char(20),
+                                    IN _c_tel_2 char(20),
+                                    IN _c_fax char(20),
+                                    IN _c_email char(45))
+BEGIN
+  INSERT INTO job (c_id,
+                   bid_needed,
+                   description,
+                   short_description,
+                   finished,
+                   `date`,
+                   c_first_name,
+                   c_last_name,
+                   c_street,
+                   c_plz,
+                   c_town,
+                   c_tel_1,
+                   c_tel_2,
+                   c_fax,
+                   c_email) VALUES (
+    _customer_id,
+    _bid_needed,
+    _description,
+    _short_description,
+    0,
+    NOW(),
+    _c_first_name,
+    _c_last_name,
+    _c_street,
+    _c_plz,
+    _c_town,
+    _c_tel_1,
+    _c_tel_2,
+    _c_fax,
+    _c_email);
+
+
+  INSERT INTO job_status (j_id, jst_id, u_id, `date`) VALUES (
+    LAST_INSERT_ID(),
+    8,
+    _user_id,
+    NOW());
+
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `add_job_status` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `add_job_status`(IN _job_id INTEGER UNSIGNED,
+                                           IN _user_id INTEGER UNSIGNED,
+                                           IN _jst_id INTEGER UNSIGNED,
+                                           IN _description TEXT)
+BEGIN
+  INSERT INTO job_status (j_id, u_id, jst_id, description, `date`) VALUES (
+    _job_id,
+    _user_id,
+    _jst_id,
+    _description,
+    NOW());
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `add_user` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -261,6 +442,49 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `edit_customer` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `edit_customer`(IN _customer_id INTEGER UNSIGNED,
+                                         IN _first_name char(45),
+                                         IN _last_name char(45),
+                                         IN _title_addition char(20),
+                                         IN _firm_name char(45),
+                                         IN _street char(45),
+                                         IN _plz char(10),
+                                         IN _tel_1 char(20),
+                                         IN _tel_2 char(20),
+                                         IN _fax char(20),
+                                         IN _email char(45),
+                                         IN _town char(45))
+BEGIN
+  UPDATE customer
+  SET first_name = _first_name,
+      last_name  = _last_name,
+      title_addition = _title_addition,
+      firm_name = _firm_name,
+      street = _street,
+      plz = _plz,
+      tel_1 = _tel_1,
+      tel_2 = _tel_2,
+      fax = _fax,
+      email = _email,
+      town = _town
+  WHERE c_id = _customer_id;
+
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `edit_user_rights` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -281,6 +505,235 @@ BEGIN
       tech_permission = _tech_permission,
       managment_permission = _managment_permission
   WHERE u_id = _user_id;
+
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_customers` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `get_customers`()
+BEGIN
+  SELECT first_name,
+         last_name,
+         firm_name,
+         town,
+         c_id as customer_id
+  FROM customer
+  ORDER BY last_name;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_customer_info` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `get_customer_info`(IN _customer_id INTEGER UNSIGNED)
+BEGIN
+  SELECT first_name,
+         last_name,
+         title_addition,
+         firm_name,
+         street,
+         plz,
+         tel_1,
+         tel_2,
+         fax,
+         email,
+         town,
+         c_id as customer_id
+  FROM customer
+  WHERE c_id = _customer_id;
+
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_jobs_latest_changes` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `get_jobs_latest_changes`()
+BEGIN
+  SELECT DISTINCT j.j_id as job_id,
+                  j.description as job_description,
+                  u.u_id as user_id,
+                  u.user_first_name,
+                  u.user_last_name,
+                  js.`date`,
+                  js.description,
+                  jst.name
+  FROM job as j
+  JOIN `user` as u
+  JOIN job_status as js
+  JOIN job_status_type as jst
+    ON j.u_id = u.u_id
+    AND js.j_id = j_id
+    AND js.jst_id = jst.jst_id;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_job_info` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `get_job_info`(IN _job_id INTEGER UNSIGNED)
+BEGIN
+  SELECT description,
+         short_description,
+         bid_needed,
+         `date`,
+         finished,
+         c_first_name,
+         c_last_name,
+         c_title_addition,
+         c_firm_name,
+         c_street,
+         c_plz,
+         c_tel_1,
+         c_tel_2,
+         c_fax,
+         c_email,
+         c_town,
+         c_id as customer_id
+  FROM job
+  WHERE job_id = _job_id;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_job_status` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `get_job_status`(IN _job_id INTEGER UNSIGNED)
+BEGIN
+  SELECT js.j_id as job_id,
+         js.u_id as user_id,
+         js.jst_id as job_status_id,
+         js.`date`,
+         js.description,
+         u.first_name,
+         u.last_name,
+         jst.name as status_name
+  FROM job_status as js
+  JOIN `user` as u
+  JOIN job_status_type as jst
+    ON js.u_id = u.u_id
+    AND js.jst_id = jst.jst_id
+  WHERE j_id = _job_id;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_job_status_types` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `get_job_status_types`()
+BEGIN
+  SELECT jst_id as type_id, name
+  FROM job_status_type;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_latest_jobs` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `get_latest_jobs`(IN `offset` INTEGER UNSIGNED, IN length INTEGER UNSIGNED)
+BEGIN
+  SET @rownum:=0;
+
+  SELECT job_id,
+         description,
+         initial_date,
+         status_name,
+         user_first_name,
+         user_last_name,
+         last_status_date
+  FROM (
+    SELECT (@rownum := @rownum+1) as row_number,
+           j.j_id as job_id,
+           j.description,
+           j.`date` as initial_date,
+           jst.name as status_name,
+           u.first_name as user_first_name,
+           u.last_name as user_last_name,
+           max(js.`date`) as last_status_date
+    FROM job as j
+    JOIN job_status as js
+    JOIN job_status_type as jst
+    JOIN `user`as u
+      ON js.j_id = j.j_id
+      AND js.jst_id = jst.jst_id
+      AND js.u_id = u.u_id
+    GROUP BY j.j_id
+    ORDER BY j.`date` DESC
+    ) as t
+  WHERE row_number > `offset` AND row_number <= (`offset` + length);
+
 
 END */;;
 DELIMITER ;
@@ -376,4 +829,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2009-08-27 16:13:16
+-- Dump completed on 2009-08-28  4:01:14

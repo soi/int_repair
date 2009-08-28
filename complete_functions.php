@@ -1,4 +1,113 @@
 <?php 
+    function complete_add_job() {
+        if (valid_request(array(isset($_POST['description']),
+                                isset($_POST['short_description']),
+                                isset($_POST['customer_id'])))) {
+            global $db;
+            global $smarty;
+            
+            if (strlen($_POST['short_description']) > 150) {
+                display_errors(101);
+                return true;
+            }     
+            
+            if (!isset($_POST['bid_needed'])) {
+                $bid = 0;
+            }
+            else {
+                $bid = 1;
+            }
+            
+            $sql = "get_customer_info(".$_POST['customer_id'].")";
+            $db->run($sql);
+            if ($db->empty_result) {
+                display_errors(100);
+                return true;    
+            }
+            else {
+                $customer_info = $db->get_result_row();
+                
+                $sql = "add_job(".$_SESSION['user_id'].",
+                                ".$_POST['customer_id'].",
+                                ".$bid.", 
+                                '".$_POST['description']."',
+                                '".$_POST['short_description']."',
+                                '".$customer_info['first_name']."',
+                                '".$customer_info['last_name']."',
+                                '".$customer_info['street']."',
+                                '".$customer_info['plz']."',
+                                '".$customer_info['town']."',
+                                '".$customer_info['tel_1']."',
+                                '".$customer_info['tel_2']."',
+                                '".$customer_info['fax']."',
+                                '".$customer_info['email']."')";
+                echo $sql;            
+                $db->run($sql);
+                if ($db->error_result)
+                    display_errors(1);
+                else {
+                    display_success("add_job");
+                    $smarty->assign('content', $smarty->fetch("succes.tpl"));
+                }   
+            }
+            
+                              
+        }    
+    }
+
+
+    function complete_add_user() {
+        if (valid_request(array(isset($_POST['first_name']),
+                                isset($_POST['last_name']),
+                                isset($_POST['password']),
+                                isset($_POST['password_retype'])))) {
+
+            global $db;
+            global $smarty;
+
+            if ($_POST['password'] != $_POST['password_retype']) {
+                display_errors(50);
+                return true;
+            }
+
+            if (!isset($_POST['admin'])) {
+                $admin_perm = 0;
+            }
+            else {
+                $admin_perm = 1;
+            }
+
+            if (!isset($_POST['managment'])) {
+                $managment_perm = 0;
+            }
+            else {
+                $managment_perm = 1;
+            }
+
+            if (!isset($_POST['tech'])) {
+                $tech_perm = 0;
+            }
+            else {
+                $tech_perm = 1;
+            }
+
+            $sql = "add_user('".$_POST['first_name']."',
+                             '".$_POST['last_name']."',
+                             ".$admin_perm.",
+                             ".$tech_perm.",
+                             ".$managment_perm.",
+                             '".md5($_POST['password'])."')";
+            $db->run($sql);
+            if ($db->error_result)
+                display_errors(1);
+            else {
+                display_success("add_user");
+                $smarty->assign('content', $smarty->fetch("succes.tpl"));
+            }
+        }
+        return true;
+    }
+
 
     function complete_edit_customer() {
         if (valid_request(array(isset($_GET['customer_id']),
@@ -58,7 +167,6 @@
                               '".$_POST['fax']."',
                               '".$_POST['email']."',
                               '".$_POST['town']."')";
-        echo $sql;
         $db->run($sql);
         if ($db->error_result)
              display_errors(1);
@@ -140,57 +248,7 @@
     
     
     
-    function complete_add_user() {
-        if (valid_request(array(isset($_POST['first_name']), 
-                                isset($_POST['last_name']),  
-                                isset($_POST['password']), 
-                                isset($_POST['password_retype'])))) {
-
-            global $db;
-            global $smarty;
-            
-            if ($_POST['password'] != $_POST['password_retype']) {
-                display_errors(50);
-                return true;
-            }
-            
-            if (!isset($_POST['admin'])) {
-                $admin_perm = 0;    
-            } 
-            else {
-                $admin_perm = 1;     
-            }
-            
-            if (!isset($_POST['managment'])) {
-                $managment_perm = 0;
-            } 
-            else {
-                $managment_perm = 1;
-            }
-            
-            if (!isset($_POST['tech'])) {
-                $tech_perm = 0;
-            } 
-            else {
-                $tech_perm = 1;
-            }
-
-            $sql = "add_user('".$_POST['first_name']."',
-                             '".$_POST['last_name']."', 
-                             ".$admin_perm.",
-                             ".$tech_perm.",
-                             ".$managment_perm.",
-                             '".md5($_POST['password'])."')";
-            $db->run($sql);
-            if ($db->error_result)
-                display_errors(1);
-            else {
-                display_success("add_user");
-                $smarty->assign('content', $smarty->fetch("succes.tpl"));
-            }
-        }
-        return true;
-    }
+    
     
     
     function complete_edit_user_rights() {

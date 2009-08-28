@@ -15,7 +15,8 @@
         $everybody_sites = array('user_overview', 
                                  'customer_overview', 
                                  'cash_overview', 
-                                 'job_overview');                                 
+                                 'job_overview', 
+                                 'report_overview');                                 
         
         $tech_sites      = array('add_job', 
                                  'edit_job', 
@@ -99,6 +100,7 @@
         switch ($_GET['site']) { 
         
             //ADD
+            
            
             case 'add_cash' :
                 display_add_cash();
@@ -125,15 +127,15 @@
                 break;
 
             case 'complete_add_job' :
-                complete__add_job();
+                complete_add_job();
                 break;
 
             case 'complete_add_user' :
                 complete_add_user();
                 break;
             
-            
             //EDIT
+            
             
             case 'edit_customer' :
                 display_edit_customer();
@@ -161,6 +163,7 @@
             
             //OVERVIEWS
             
+            
             case 'cash_overview' :
                 display_cash_overview();
                 break;
@@ -183,6 +186,7 @@
             
            //DETAILS
            
+           
             case 'customer_info' :
                 display_customer_info();
                 break;
@@ -190,7 +194,6 @@
             case 'job_info' :
                 display_job_info();
                 break;
-                
         }
     }
     else {

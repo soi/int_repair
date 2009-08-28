@@ -26,7 +26,7 @@
         global $smarty;
 
         assign_customers();
-        $smarty->assign('content', $smarty->fetch("add_customers.tpl"));
+        $smarty->assign('content', $smarty->fetch("add_job.tpl"));
         return true;
      }
      
@@ -105,7 +105,7 @@
 
         global $smarty;
 
-        assign_reports();
+        assign_latest_jobs(0, 3);
         $smarty->assign('content', $smarty->fetch("report_overview.tpl"));
         return true;
      }
