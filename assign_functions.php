@@ -4,41 +4,38 @@
     //|Basic functions each assigning one template variable|
     //|----------------------------------------------------|
     
-    function assign_customer_info($customer_id) {
+
+    function call_and_assign($sql, $var_name, $array = false) {
     
         global $smarty;
         global $db;
-        
-        $db->run("get_customer_info(".$customer_id.")");
-        if ($db->error_result) {
-            display_errors(1);
+
+        $db->run($sql);
+        if ($db->empty_result) {            
+            display_errors(3);
             return true;
         }
         else {
-            $smarty->assign('customer_info', $db->get_result_row());
+            if ($array) {
+                $smarty->assign($var_name, $db->get_result_array());
+            }
+            else {
+                $smarty->assign($var_name, $db->get_result_row());
+            }
             return true;
         }
-        
-        
     }
     
     
-    function assign_customers() {
-
-        global $smarty;
-        global $db;
-
-        $db->run("get_customers()");
-        if ($db->error_result) {
-            display_errors(1);
-            return true;
-        }
-        else {
-            $smarty->assign('customers', $db->get_result_array());
-            return true;
-        }
-
-
+    function assign_customer_info($customer_id) {    
+        call_and_assign("get_customer_info(".$customer_id.")", "customer_info", false);      
+        return true;
+    }
+    
+    
+    function assign_customers() {    
+        call_and_assign("get_customers()", "customers", true);
+        return true;
     }
     
     
@@ -50,6 +47,71 @@
         $error_messages = parse_ini_file(ERROR_PATH);   // @todo what if file not exists
         $related_error_messages = array_values(array_intersect_key($error_messages, array_flip($errors)));  // @todo memcache that
         $smarty->assign('error_messages', $related_error_messages);
+        return true;
+    }
+    
+    
+    
+    function assign_latest_jobs ($offset, $length) {    
+        call_and_assign("get_latest_jobs(".$offset.", ".$length.")", "latest_jobs", true);
+        return true;
+    }
+    
+
+    function assign_job_info ($job_id) {
+        call_and_assign("get_job_info(".$job_id.")", "job_info", false);
+        return true;
+    }
+
+    
+    function assign_job_services ($job_id) {
+        
+        global $smarty;
+        global $db;
+
+        $db->run("get_job_services(".$job_id.")");
+        if ($db->empty_result) {
+            display_errors(3);
+            return true;
+        }
+        else {
+            foreach ($types = $db->get_result_array() as $key => $val) {
+                $types[$key]['service_price'] = str_replace('.', ',', $types[$key]['service_price']);
+            }
+            
+            $smarty->assign('job_services', $types);
+        }
+        return true;
+    }
+    
+    function assign_job_service_types () {
+        
+        global $smarty;
+        global $db;
+
+        $db->run('get_job_service_types()');
+        if ($db->empty_result) {
+            display_errors(3);
+            return true;
+        }
+        else {
+            foreach ($types = $db->get_result_array() as $key => $val) {
+                $types[$key]['price'] = str_replace('.', ',', $types[$key]['price']);
+            }
+            $smarty->assign('job_service_types', $types);
+        }
+        return true;
+    }
+    
+    
+     function assign_job_status ($job_id) {
+        call_and_assign("get_job_status(".$job_id.")", "job_status", true);
+        return true;
+    }
+    
+
+    function assign_job_status_types () {
+        call_and_assign("get_job_status_types()", "job_status_types", true);
         return true;
     }
     
@@ -84,49 +146,13 @@
     
     
     function assign_user_info($user_id) {
-        
-        global $smarty;
-        global $db;
-        
-        $sql = "get_user_info(".$user_id.")";
-        $db->run($sql);
-        if ($db->error_result) {
-            display_errors(1);
-            return true;
-        }
-        else {
-            $smarty->assign('user_info', $db->get_result_row());   
-            return true;    
-        }
+        call_and_assign("get_user_info(".$user_id.")", "user_info", false);
+        return true;
     }
-    
-    
-    function assign_latest_jobs ($offset, $length) {
-        
-        global $smarty;
-        global $db;
 
-        $sql = "get_latest_jobs(".$offset.", ".$length.")";
-        $db->run($sql);
-        if ($db->error_result) {
-            display_errors(1);
-            return true;
-        }
-        else {
-            $smarty->assign('latest_jobs', $db->get_result_array());
-            return true;
-        }    
-        
-    }
     
-    
-    function assign_users() {
-
-        global $smarty;
-        global $db;
-        
-        $db->run("get_users()");
-        $smarty->assign('users', $db->get_result_array());
+    function assign_users() {    
+        call_and_assign("get_users()", "users", true);
         return true;
     }
     
@@ -134,12 +160,14 @@
     function assign_visitor_info()  {
 
         global $smarty;
-        global $db;
 
         $smarty->assign('visitor_info', $_SESSION);
         return true;
       
      }
+     
+     
+
     
     
  ?>

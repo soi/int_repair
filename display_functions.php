@@ -51,6 +51,10 @@
 
         if (valid_request(array(isset($_GET['job_id'])))) {
             assign_job_info($_GET['job_id']);
+            assign_job_status($_GET['job_id']);
+            assign_job_services($_GET['job_id']);
+            assign_job_status_types();
+            assign_job_service_types();
             $smarty->assign('content', $smarty->fetch("edit_job.tpl"));
         }
         return true;
@@ -139,8 +143,17 @@
     // MISC
     
     
-    function display_success($success_action, $related_id = 0) {
-        assign_success_info($success_action, $related_id = 0);
+    function display_success($success_action, $short_message = false, $related_id = 0) {
+        
+        global $smarty;
+        
+        assign_success_info($success_action, $related_id);
+        if ($short_message) {
+            $smarty->assign('status_message', $smarty->fetch("success_message.tpl"));    
+        }
+        else {
+            $smarty->assign('content', $smarty->fetch("success.tpl"));    
+        }
         return true;
     }
     
@@ -152,7 +165,7 @@
         if (!is_array($errors))
             $errors = array($errors);
         if (assign_error_messages($errors)) {
-            $smarty->assign('content', $smarty->fetch("errors.tpl"));
+            $smarty->assign('error_message', $smarty->fetch("errors.tpl"));
             return true;
         }
         else

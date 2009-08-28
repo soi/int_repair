@@ -20,6 +20,8 @@
         
         $tech_sites      = array('add_job', 
                                  'edit_job', 
+                                 'complete_add_service',
+                                 'complete_add_status',
                                  'complete_add_job', 
                                  'complete_edit_job', 
                                  'job_overview', 
@@ -55,6 +57,16 @@
             }    
         }
         return $perm_sites;
+    }
+    
+    
+    function parse_messages() {        
+        if (isset($_GET['success']) && ($_GET['success'])) {
+            display_success($_GET['success'], true);
+        } 
+        if (isset($_GET['errors']) && ($_GET['errors'])) {
+            display_errors(explode($_GET['errors']));
+        }
     }
 
     /******************
@@ -97,6 +109,9 @@
      
     $perm_sites = get_permitted_sites();
     if (in_array($_GET['site'], $perm_sites)) {
+    
+        parse_messages();
+    
         switch ($_GET['site']) { 
         
             //ADD
@@ -128,6 +143,14 @@
 
             case 'complete_add_job' :
                 complete_add_job();
+                break;
+            
+            case 'complete_add_service' :
+                complete_add_service();
+                break;
+                
+            case 'complete_add_status' :
+                complete_add_status();
                 break;
 
             case 'complete_add_user' :
@@ -194,6 +217,10 @@
             case 'job_info' :
                 display_job_info();
                 break;
+                
+            default: 
+                $smarty->display('login.tpl');
+                return true;    
         }
     }
     else {
@@ -209,5 +236,6 @@
     $smarty->assign('footer', $smarty->fetch("footer.tpl"));
     
     $smarty->display('index.tpl');
+    unset ($smarty);
 
 ?>

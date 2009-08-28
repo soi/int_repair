@@ -13,6 +13,9 @@
                     {$left_navi}
                 </div>
                 <div id="content_main_wrap" align="left">
+                    <div id="error_message_wrap" align="center">
+                        {$error_message}
+                    </div>
                     <div id="status_message_wrap" align="center">
                         {$status_message}
                     </div>

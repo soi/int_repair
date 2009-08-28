@@ -1,4 +1,71 @@
 <?php 
+    
+    function complete_add_customer() {
+        if (valid_request(array(isset($_POST['first_name']),
+                                isset($_POST['last_name']),
+                                isset($_POST['title_addition']),
+                                isset($_POST['firm_name']),
+                                isset($_POST['street']),
+                                isset($_POST['plz']),
+                                isset($_POST['town']),
+                                isset($_POST['tel_1']),
+                                isset($_POST['tel_2']),
+                                isset($_POST['fax']),
+                                isset($_POST['email'])))) {
+        }
+
+        global $db;
+        global $smarty;
+
+        if (strlen($_POST['first_name']) > 45)
+            $errors[] = 52;
+        if (strlen($_POST['last_name']) > 45)
+            $errors[] = 51;
+        if (strlen($_POST['title_addition']) > 20)
+            $errors[] = 53;
+        if (strlen($_POST['firm_name']) > 45)
+            $errors[] = 54;
+        if (strlen($_POST['street']) > 45)
+            $errors[] = 55;
+        if (strlen($_POST['plz']) > 10)
+            $errors[] = 56;
+        if (strlen($_POST['tel_1']) > 20)
+            $errors[] = 57;
+        if (strlen($_POST['tel_2']) > 20)
+            $errors[] = 58;
+        if (strlen($_POST['fax']) > 20)
+            $errors[] = 59;
+        if (strlen($_POST['email']) > 45)
+            $errors[] = 60;
+        if (strlen($_POST['town']) > 45)
+            $errors[] = 61;
+
+        if (isset($errors)) {
+            display_errors($errors);
+            return true;
+        }
+
+        $sql = "add_customer('".$_POST['first_name']."',
+                             '".$_POST['last_name']."',
+                             '".$_POST['title_addition']."',
+                             '".$_POST['firm_name']."',
+                             '".$_POST['street']."',
+                             '".$_POST['plz']."',
+                             '".$_POST['tel_1']."',
+                             '".$_POST['tel_2']."',
+                             '".$_POST['fax']."',
+                             '".$_POST['email']."',
+                             '".$_POST['town']."')";
+        $db->run($sql);
+        if ($db->error_result)
+             display_errors(1);
+        else {
+            display_success("add_customer");
+        }
+        return true;
+    }
+    
+
     function complete_add_job() {
         if (valid_request(array(isset($_POST['description']),
                                 isset($_POST['short_description']),
@@ -41,10 +108,11 @@
                                 '".$customer_info['tel_2']."',
                                 '".$customer_info['fax']."',
                                 '".$customer_info['email']."')";
-                echo $sql;            
                 $db->run($sql);
-                if ($db->error_result)
+                if ($db->error_result) {
                     display_errors(1);
+                    return true;    
+                }
                 else {
                     display_success("add_job");
                     $smarty->assign('content', $smarty->fetch("succes.tpl"));
@@ -54,6 +122,106 @@
                               
         }    
     }
+    
+    
+    function complete_add_service() {
+        if (valid_request(array(isset($_GET['job_id']),
+                                isset($_POST['type_id']),
+                                isset($_POST['description']),
+                                isset($_POST['custom_type']),
+                                isset($_POST['price']), 
+                                isset($_POST['amount'])))) {
+
+            global $db;
+            global $smarty;
+            
+            if (!preg_match('/^[0-9]+((\.{1}|\,{1})[0-9]+)?$/', $_POST['price'])) {
+                display_errors(203);
+                return true;    
+            }
+
+            $_POST['price'] = str_replace(',', '.', $_POST['price']);            
+            
+            if (strlen($_POST['custom_type']) > 0) {
+                if (strlen($_POST['custom_type']) > 100) {
+                    display_errors(200);
+                    return true;
+                }
+                
+                $sql = "add_custom_job_service(".$_GET['job_id'].", 
+                                               ".$_SESSION['user_id'].", 
+                                               '".$_POST['description']."', 
+                                               '".$_POST['custom_type']."', 
+                                               ".$_POST['price']."), 
+                                               ".$_POST['amount'].")";
+                $db->run($sql);
+                if ($db->error_result) {
+                    display_errors(1);
+                    return true;    
+                }
+                else {
+                    redirect('edit_job', 'job_id='.$_GET['job_id'], 'add_service');
+                    return true;                   
+                }                
+            }
+            else {
+                if ($_POST['type_id'] == 0) {
+                    display_errors(201);
+                    return true;    
+                }
+                
+                $type = substr($_POST['type_id'],0 , strpos($_POST['type_id'], '&'));
+                $sql = "add_job_service(".$_GET['job_id'].",
+                                        ".$_SESSION['user_id'].",
+                                        '".$_POST['description']."',
+                                        ".$type.",
+                                        ".$_POST['price'].",
+                                        ".$_POST['amount'].")";
+                $db->run($sql);
+                if ($db->error_result) {
+                    display_errors(1);
+                    return true;    
+                }
+                else {
+                    redirect('edit_job', 'job_id='.$_GET['job_id'], 'add_service');
+                    return true;
+                }    
+            }
+        }    
+    }
+    
+    
+    
+    function complete_add_status() {
+        if (valid_request(array(isset($_GET['job_id']),
+                                isset($_POST['type_id']),
+                                isset($_POST['description'])))) {
+
+            global $db;
+            global $smarty;
+            
+            if ($_POST['type_id'] == 0) {
+                display_errors(202);
+                return true;
+            }
+
+            $sql = "add_job_status(".$_GET['job_id'].",
+                                   ".$_SESSION['user_id'].",
+                                   ".$_POST['type_id'].",
+                                   '".$_POST['description']."')";
+            $db->run($sql);
+            if ($db->error_result) {
+                display_errors(1);
+                return true;
+            }
+            else {
+                
+                redirect('edit_job', 'job_id='.$_GET['job_id'], 'add_status');
+                return true;
+            }
+        }
+    }
+    
 
 
     function complete_add_user() {
@@ -102,7 +270,6 @@
                 display_errors(1);
             else {
                 display_success("add_user");
-                $smarty->assign('content', $smarty->fetch("succes.tpl"));
             }
         }
         return true;
@@ -172,83 +339,9 @@
              display_errors(1);
         else {
             display_success("edit_customer");
-            $smarty->assign('content', $smarty->fetch("succes.tpl"));
         }
         return true;    
     }
-    
-    
-    
-
-    function complete_add_customer() {
-        if (valid_request(array(isset($_POST['first_name']),
-                                isset($_POST['last_name']),
-                                isset($_POST['title_addition']),
-                                isset($_POST['firm_name']), 
-                                isset($_POST['street']),
-                                isset($_POST['plz']),
-                                isset($_POST['town']),
-                                isset($_POST['tel_1']),
-                                isset($_POST['tel_2']),
-                                isset($_POST['fax']),
-                                isset($_POST['email'])))) {
-        }
-        
-        global $db;
-        global $smarty;
-        
-        if (strlen($_POST['first_name']) > 45) 
-            $errors[] = 52;        
-        if (strlen($_POST['last_name']) > 45) 
-            $errors[] = 51;
-        if (strlen($_POST['title_addition']) > 20) 
-            $errors[] = 53;
-        if (strlen($_POST['firm_name']) > 45) 
-            $errors[] = 54;
-        if (strlen($_POST['street']) > 45) 
-            $errors[] = 55;
-        if (strlen($_POST['plz']) > 10) 
-            $errors[] = 56;
-        if (strlen($_POST['tel_1']) > 20) 
-            $errors[] = 57;
-        if (strlen($_POST['tel_2']) > 20) 
-            $errors[] = 58;
-        if (strlen($_POST['fax']) > 20) 
-            $errors[] = 59;
-        if (strlen($_POST['email']) > 45) 
-            $errors[] = 60;
-        if (strlen($_POST['town']) > 45) 
-            $errors[] = 61;
-            
-        if (isset($errors)) {
-            display_errors($errors);
-            return true;
-        }
-        
-        $sql = "add_customer('".$_POST['first_name']."',
-                             '".$_POST['last_name']."',
-                             '".$_POST['title_addition']."',
-                             '".$_POST['firm_name']."',
-                             '".$_POST['street']."',
-                             '".$_POST['plz']."',
-                             '".$_POST['tel_1']."',
-                             '".$_POST['tel_2']."',
-                             '".$_POST['fax']."',
-                             '".$_POST['email']."', 
-                             '".$_POST['town']."')";
-        $db->run($sql);
-        if ($db->error_result)
-             display_errors(1);
-        else {
-            display_success("add_customer");
-            $smarty->assign('content', $smarty->fetch("succes.tpl"));
-        }
-        return true;            
-    }
-    
-    
-    
-    
     
     
     function complete_edit_user_rights() {
@@ -287,7 +380,6 @@
                 display_errors(1);
             else {
                 display_success("edit_user_rights");
-                $smarty->assign('content', $smarty->fetch("succes.tpl"));
             }    
         }
         return true;
@@ -354,5 +446,22 @@
         $smarty->display('login.tpl');
         
         return true;
+    }
+    
+    
+    function redirect($site, $addition = '', $success = '', $errors = array()) {
+    
+        $url = "http://".$_SERVER['HTTP_HOST']."/int/index.php?site=".$site;
+        
+        if ($addition) {
+            $url .= "&".$addition;
+        }
+        if ($errors) {
+            $url .= "&errors=".implode(',', $errors);
+        }
+        if ($success) {
+            $url .= "&success=".$success;
+        } 
+        header('Location: '.$url);
     }
  ?>
