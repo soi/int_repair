@@ -1,0 +1,1 @@
+{$success_info.message}    
