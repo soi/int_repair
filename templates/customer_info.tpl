@@ -1,5 +1,5 @@
 <h3>Kundendaten Detailansicht</h3>
-<b>Name:</b> {$customer_info.title_addition} {$customer_info.last_name}, {$customer_info.first_name} <br />
+<b>Name:</b> {$customer_info.form_of_address} {$customer_info.title_addition} {$customer_info.last_name}, {$customer_info.first_name} <br />
 <b>Firma:</b> {$customer_info.firm_name} <br />
 <b>Adresse:</b> {$customer_info.street} {$customer_info.plz} {$customer_info.town} <br />
 <b>Telefonnummer 1:</b> {$customer_info.tel_1}  <br />

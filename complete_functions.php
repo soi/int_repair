@@ -1,7 +1,8 @@
 <?php 
     
     function complete_add_customer() {
-        if (valid_request(array(isset($_POST['first_name']),
+        if (valid_request(array(isset($_POST['form_of_address']),
+                                isset($_POST['first_name']),
                                 isset($_POST['last_name']),
                                 isset($_POST['title_addition']),
                                 isset($_POST['firm_name']),
@@ -17,6 +18,8 @@
         global $db;
         global $smarty;
 
+        if (strlen($_POST['form_of_address']) > 4)
+            $errors[] = 62;
         if (strlen($_POST['first_name']) > 45)
             $errors[] = 52;
         if (strlen($_POST['last_name']) > 45)
@@ -45,7 +48,8 @@
             return true;
         }
 
-        $sql = "add_customer('".$_POST['first_name']."',
+        $sql = "add_customer('".$_POST['form_of_address']."',
+                             '".$_POST['first_name']."',
                              '".$_POST['last_name']."',
                              '".$_POST['title_addition']."',
                              '".$_POST['firm_name']."',
@@ -278,6 +282,7 @@
 
     function complete_edit_customer() {
         if (valid_request(array(isset($_GET['customer_id']),
+                                isset($_POST['form_of_address']),
                                 isset($_POST['first_name']),
                                 isset($_POST['last_name']),
                                 isset($_POST['title_addition']),
@@ -294,6 +299,8 @@
         global $db;
         global $smarty;
 
+        if (strlen($_POST['form_of_address']) > 4)
+            $errors[] = 62;
         if (strlen($_POST['first_name']) > 45)
             $errors[] = 52;
         if (strlen($_POST['last_name']) > 45)
@@ -323,6 +330,7 @@
         }
 
         $sql = "edit_customer(".$_GET['customer_id'].",
+                              '".$_POST['form_of_address']."',
                               '".$_POST['first_name']."',
                               '".$_POST['last_name']."',
                               '".$_POST['title_addition']."',
@@ -393,7 +401,7 @@
             global $smarty;
             
             //getting the name parts
-            if (!preg_match('/^[a-zA-Z]+\.{1}[a-zA-Z]+$/', $_POST['login'])) {
+            if (!preg_match('/^[a-zA-Z\x80-\xFF]+\.{1}[a-zA-Z\x80-\xFF]+$/', $_POST['login'])) {
                 $smarty->assign('message', 'Ihr Login musst das Format \'Vorname.Nachname\' haben (z.B. Hans.Meier).');
                 $smarty->display('login.tpl');
                 return true;

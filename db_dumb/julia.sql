@@ -43,8 +43,9 @@ CREATE TABLE `customer` (
   `fax` varchar(20) NOT NULL,
   `email` varchar(45) NOT NULL,
   `town` varchar(45) NOT NULL,
+  `form_of_address` varchar(4) NOT NULL DEFAULT 'Herr',
   PRIMARY KEY (`c_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12544 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,7 +54,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'Yusuf','Mohammed','Dr. Phil.','Google','Strasse','','','','','',''),(2,'John','Smith','Dr. Phil.3','Google4','Strasse5','154236','tel_18','tel_29','fax10','mymail11','Berlin7'),(3,'','','','','','','','','','','');
+INSERT INTO `customer` VALUES (1,'Yusuf','Mohammed','Dr. Phil.','Google','Strasse','','','','','','','Frau'),(2,'John','Smith','Dr. Phil.3','Google4','Strasse5','154236','tel_18','tel_29','fax10','mymail11','Berlin7','Herr'),(12543,'Gerd','Müller','Dr.','Microsoft','Berlinerstr.13','12456','0175-12389612','0175-12389614','0175-12389647','gerd@web.de','Potsdam','Herr');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +96,7 @@ CREATE TABLE `job` (
 
 LOCK TABLES `job` WRITE;
 /*!40000 ALTER TABLE `job` DISABLE KEYS */;
-INSERT INTO `job` VALUES (1,0,0,'TV broken','Felix','Stiehler','','','Strasse','','','','',1,'1','','2009-08-27 20:20:01',0,0,''),(2,0,0,'PC broken','Felix','Stiehler','','','Strasse','','','','',1,'23','','2009-08-27 22:20:01',0,0,''),(3,0,0,'Graka broken','Felix2','Stiehler1','tel_18','tel_29','Strasse5','Berlin7','mymail11','154236','',2,'345','fax10','2009-08-27 18:20:01',0,0,''),(9,0,1,'lang','Felix','Stiehler','','','Strasse','','','','',1,'Graka im Eimer','','2009-08-28 03:02:57',0,0,'');
+INSERT INTO `job` VALUES (1,0,0,'TV broken','Felix','Stiehler','','','Strasse','','','','',12543,'TV kaputt','','2009-08-27 20:20:01',0,0,''),(2,0,0,'PC broken','Felix','Stiehler','','','Strasse','','','','',12543,'PC kaputt','','2009-08-27 22:20:01',0,0,''),(3,0,0,'Graka broken','Felix2','Stiehler1','tel_18','tel_29','Strasse5','Berlin7','mymail11','154236','',2,'345','fax10','2009-08-27 18:20:01',0,0,''),(9,0,1,'lang','Felix','Stiehler','','','Strasse','','','','',1,'Graka im Eimer','','2009-08-28 03:02:57',0,0,'');
 /*!40000 ALTER TABLE `job` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,7 +182,7 @@ CREATE TABLE `job_status` (
   CONSTRAINT `FK_job_status_1` FOREIGN KEY (`jst_id`) REFERENCES `job_status_type` (`jst_id`),
   CONSTRAINT `FK_job_status_2` FOREIGN KEY (`j_id`) REFERENCES `job` (`j_id`),
   CONSTRAINT `FK_job_status_3` FOREIGN KEY (`u_id`) REFERENCES `user` (`u_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,7 +191,7 @@ CREATE TABLE `job_status` (
 
 LOCK TABLES `job_status` WRITE;
 /*!40000 ALTER TABLE `job_status` DISABLE KEYS */;
-INSERT INTO `job_status` VALUES (4,1,1,1,'2005-11-30 12:00:00','111'),(5,2,1,1,'2005-11-30 12:45:00','211'),(6,4,2,1,'2005-11-30 12:50:00','121'),(7,1,2,2,'2005-11-30 12:12:00','122'),(19,4,2,1,'2009-08-28 23:13:29','BESTELLT');
+INSERT INTO `job_status` VALUES (4,1,1,1,'2005-11-30 12:00:00','111'),(5,2,1,1,'2005-11-30 12:45:00','211'),(6,4,2,1,'2005-11-30 12:50:00','121'),(7,1,2,2,'2005-11-30 12:12:00','122'),(19,4,2,1,'2009-08-28 23:13:29','BESTELLT'),(20,3,1,1,'2009-08-29 03:37:43','erstellt');
 /*!40000 ALTER TABLE `job_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -283,7 +284,8 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `add_customer`(IN _first_name char(45),
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `add_customer`(IN _form_of_address char(4),
+                                         IN _first_name char(45),
                                          IN _last_name char(45),
                                          IN _title_addition char(20),
                                          IN _firm_name char(45),
@@ -295,7 +297,8 @@ DELIMITER ;;
                                          IN _email char(45),
                                          IN _town char(45))
 BEGIN
-  INSERT INTO customer (first_name,
+  INSERT INTO customer (form_of_address,
+                        first_name,
                         last_name,
                         title_addition,
                         firm_name,
@@ -306,6 +309,7 @@ BEGIN
                         fax,
                         email,
                         town) VALUES (
+    _form_of_address,
     _first_name,
     _last_name,
     _title_addition,
@@ -530,6 +534,7 @@ DELIMITER ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `edit_customer`(IN _customer_id INTEGER UNSIGNED,
+                                         IN _form_of_address char(4),
                                          IN _first_name char(45),
                                          IN _last_name char(45),
                                          IN _title_addition char(20),
@@ -543,7 +548,8 @@ DELIMITER ;;
                                          IN _town char(45))
 BEGIN
   UPDATE customer
-  SET first_name = _first_name,
+  SET form_of_address = _form_of_address,
+      first_name = _first_name,
       last_name  = _last_name,
       title_addition = _title_addition,
       firm_name = _firm_name,
@@ -601,7 +607,8 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `get_customers`()
 BEGIN
-  SELECT first_name,
+  SELECT form_of_address,
+         first_name,
          last_name,
          firm_name,
          town,
@@ -626,7 +633,8 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `get_customer_info`(IN _customer_id INTEGER UNSIGNED)
 BEGIN
-  SELECT first_name,
+  SELECT form_of_address,
+         first_name,
          last_name,
          title_addition,
          firm_name,
@@ -641,6 +649,51 @@ BEGIN
   FROM customer
   WHERE c_id = _customer_id;
 
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_customer_login_data` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `get_customer_login_data`(IN _first_name varchar(45), IN _last_name varchar(45), IN _password char(32))
+BEGIN
+  SELECT c_id as customer_id, form_of_address
+  FROM customer
+  WHERE first_name = _first_name
+    AND last_name = _last_name
+    AND c_id = _password;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_jobs_customer` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `get_jobs_customer`(IN _customer_id INTEGER UNSIGNED)
+BEGIN
+  SELECT short_description, `date` bill_send, paid, finished, bid_needed, j_id as job_id
+  FROM job
+  WHERE c_id = _customer_id
+  ORDER BY j_id;
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -787,6 +840,7 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `get_job_status`(IN _job_id INTEGER UNSIGNED)
 BEGIN
+
   SELECT js.j_id as job_id,
          js.u_id as user_id,
          js.jst_id as job_status_id,
@@ -802,6 +856,32 @@ BEGIN
     AND js.jst_id = jst.jst_id
   WHERE j_id = _job_id
   ORDER BY js.`date`;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_job_status_customer` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `get_job_status_customer`(IN _customer_id INTEGER UNSIGNED)
+BEGIN
+  SELECT js.`date`, jst.name, j.j_id as job_id
+  FROM job_status as js
+  JOIN job_status_type as jst
+  JOIN job as j
+    ON js.jst_id = jst.jst_id
+    AND js.j_id = j.j_id
+  WHERE j.c_id = _customer_id
+  ORDER BY j.j_id, js.js_id;
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -965,4 +1045,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2009-08-28 23:45:58
+-- Dump completed on 2009-08-29 18:18:06

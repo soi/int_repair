@@ -44,6 +44,7 @@
                 //store the user informations for further actions
                 $row = $db->get_result_row();
                 $_SESSION['customer_id'] = $row['customer_id'];
+                $_SESSION['form_of_address'] = $row['form_of_address'];
                 $_SESSION['first_name'] = $first_name;
                 $_SESSION['last_name'] = $last_name;
 

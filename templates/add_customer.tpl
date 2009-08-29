@@ -1,6 +1,11 @@
 <h3>Kunden hinzufügen</h3>
 <form action="index.php?site=complete_add_customer" method="post">
-    <h5>Nachname</h5>
+    <h5>Anrede</h5>
+    <select name="form_of_address">
+        <option value="Herr">Herr</option>
+        <option value="Frau">Frau</option>
+    </select>
+    <h5>Name</h5>
     <input type="text" name="last_name"/>
     <h5>Vorname</h5>
     <input type="text" name="first_name"/>
@@ -8,7 +13,7 @@
     <h5>Zusatztitel</h5>
     <input type="text" name="title_addition" size="10"/>
     <br />
-    <h5>Firmenname</h5>
+    <h5>Firma</h5>
     <input type="text" name="firm_name"/>
     <br /> 
     <h5>Strasse mit Hausnummer</h5>

@@ -3,5 +3,6 @@
     <b>{$job.short_description}</b> <br />
     {foreach from=$job.status item=status}
         {$status.name}&nbsp;{$status.date}{$status.bill_send}{$status.paid}{$status.finished}{$status.bid_needed}<br />   
-    {/foreach}    
+    {/foreach}   
+    <br /> 
 {/foreach}

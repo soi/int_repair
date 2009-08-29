@@ -1,6 +1,6 @@
 <h3>Kunden &Uuml;bersicht</h3>
 {foreach from=$customers item=customer}
-    <b>{$customer.last_name}, {$customer.first_name}</b>
+    <b>{$customer.form_of_address} {$customer.last_name}</b>
     <br />
     {if $customer.firm_name}
         Firma: {$customer.firm_name}

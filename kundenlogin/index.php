@@ -40,7 +40,7 @@
         return true;    
     }
     
-    if (!isset($_SESSION['user_id']) || !isset($_GET['site']) ) {
+    if (!isset($_SESSION['customer_id']) || !isset($_GET['site']) ) {
         $smarty->display('login.tpl');
         return true;    
     }
