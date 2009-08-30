@@ -3,8 +3,9 @@
 Beschreibung: {$job_info.short_description} <br />
 Auftragseingang: {$job_info.date} <br />
 Kostenvoranschlag gew&uuml;nscht: {$job_info.bid_needed} <br />
-Beended: {$job_info.finished} <br />
-Bezahlt: {$job_info.paid} <br /> 
+Rechnung erstellt: {$job_additional_info.bill_created} <br />
+Bezahlt: {$job_additional_info.paid} <br />
+Beended: {$job_additional_info.finished} <br />
 
 
 

@@ -51,6 +51,7 @@
 
         if (valid_request(array(isset($_GET['job_id'])))) {
             assign_job_info($_GET['job_id']);
+            assign_job_additional_info($_GET['job_id']);
             assign_job_status($_GET['job_id']);
             assign_job_services($_GET['job_id']);
             assign_job_status_types();

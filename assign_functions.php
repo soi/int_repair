@@ -66,6 +66,12 @@
         return true;
     }
     
+    
+    function assign_job_additional_info ($job_id) {
+        call_and_assign("get_job_additional_info(".$job_id.")", "job_additional_info", false, true);
+        return true;
+    }
+    
 
     function assign_job_info ($job_id) {
         call_and_assign("get_job_info(".$job_id.")", "job_info", false, true);

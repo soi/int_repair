@@ -213,7 +213,7 @@
                                         ".$_POST['amount'].")";
                 $db->run($sql);
                 if ($db->error_result) {
-                    display_errors(1);
+                    redirect('edit_job', 'job_id='.$_GET['job_id'], '', array(1));
                     return true;    
                 }
                 else {
@@ -245,7 +245,7 @@
                                    '".$_POST['description']."')";
             $db->run($sql);
             if ($db->error_result) {
-                display_errors(1);
+                redirect('edit_job', 'job_id='.$_GET['job_id'], '', array(1));
                 return true;
             }
             else {

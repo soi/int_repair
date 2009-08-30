@@ -27,11 +27,9 @@
                                  'job_overview', 
                                  'user_overview');
                             
-        $managment_sites = array('add_cash',
-                                 'add_customer',
+        $managment_sites = array('add_customer',
                                  'create_bill',
                                  'cash_overview',
-                                 'complete_add_cash',
                                  'complete_add_customer',
                                  'complete_edit_customer',
                                  'customer_info',
