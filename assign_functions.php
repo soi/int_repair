@@ -5,13 +5,17 @@
     //|----------------------------------------------------|
     
 
-    function call_and_assign($sql, $var_name, $array = false) {
+    function call_and_assign($sql, $var_name, $array = false, $alert_when_empty = false) {
     
         global $smarty;
         global $db;
 
         $db->run($sql);
-        if ($db->empty_result) {            
+        if ($db->error_result) {            
+            display_errors(1);
+            return true;
+        }
+        elseif ($alert_when_empty && $db->empty_result) {
             display_errors(3);
             return true;
         }
@@ -28,7 +32,7 @@
     
     
     function assign_customer_info($customer_id) {    
-        call_and_assign("get_customer_info(".$customer_id.")", "customer_info", false);      
+        call_and_assign("get_customer_info(".$customer_id.")", "customer_info", false, true);      
         return true;
     }
     
@@ -59,7 +63,7 @@
     
 
     function assign_job_info ($job_id) {
-        call_and_assign("get_job_info(".$job_id.")", "job_info", false);
+        call_and_assign("get_job_info(".$job_id.")", "job_info", false, true);
         return true;
     }
 
@@ -70,8 +74,8 @@
         global $db;
 
         $db->run("get_job_services(".$job_id.")");
-        if ($db->empty_result) {
-            display_errors(3);
+        if ($db->error_result) {
+            display_errors(1);
             return true;
         }
         else {
@@ -90,8 +94,8 @@
         global $db;
 
         $db->run('get_job_service_types()');
-        if ($db->empty_result) {
-            display_errors(3);
+        if ($db->error_result) {
+            display_errors(1);
             return true;
         }
         else {
@@ -146,7 +150,7 @@
     
     
     function assign_user_info($user_id) {
-        call_and_assign("get_user_info(".$user_id.")", "user_info", false);
+        call_and_assign("get_user_info(".$user_id.")", "user_info", false, true);
         return true;
     }
 

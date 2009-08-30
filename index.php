@@ -219,11 +219,13 @@
                 break;
                 
             default: 
+                $smarty->assign('message', 'Unbekannte Seite.');
                 $smarty->display('login.tpl');
                 return true;    
         }
     }
     else {
+        $smarty->assign('message', 'F&uuml;r diese Seite haben sie keine Berechtigung.');
         $smarty->display('login.tpl');
         return true;    
     }

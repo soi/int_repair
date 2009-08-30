@@ -111,7 +111,7 @@ Bezahlt: {$job_info.paid} <br />
     oder neuen Service anlegen: 
     <input type="text" name="custom_type"/>
     Preis:
-    <input id="real_price" name="price" size="6"/>
+    <input id="real_price" name="price" size="6"/> &euro;
     Menge:
     <input name="amount" size="2" value="1"/>
     Bemerkung:

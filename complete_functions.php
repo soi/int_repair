@@ -119,7 +119,7 @@
                 }
                 else {
                     display_success("add_job");
-                    $smarty->assign('content', $smarty->fetch("succes.tpl"));
+                    $smarty->assign('content', $smarty->fetch("success.tpl"));
                 }   
             }
             
@@ -156,7 +156,7 @@
                                                ".$_SESSION['user_id'].", 
                                                '".$_POST['description']."', 
                                                '".$_POST['custom_type']."', 
-                                               ".$_POST['price']."), 
+                                               ".$_POST['price'].", 
                                                ".$_POST['amount'].")";
                 $db->run($sql);
                 if ($db->error_result) {
@@ -430,7 +430,7 @@
                     else {
                         header('HTTP/1.1 303 See Other ');
                     }
-                    header('Location: index.php?site=add_user');
+                    header('Location: index.php?site=report_overview');
                 }
             }
             else  {
