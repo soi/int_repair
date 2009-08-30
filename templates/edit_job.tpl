@@ -75,7 +75,7 @@ Bezahlt: {$job_info.paid} <br />
     {foreach from=$job_services item=service}
         <tr>
             <td>{$service.service_name}</td>
-            <td>{$service.service_price}</td>
+            <td>{$service.service_price|replace:".":","}</td>
             <td>{$service.amount}</td>
             <td>{$service.date}</td>
             <td>{$service.first_name} {$service.last_name}</td>
@@ -105,7 +105,7 @@ Bezahlt: {$job_info.paid} <br />
     <select id="service_type" name="type_id" onchange="update_service_price()">
         <option value="0">Bitte ausw&auml;hlen..</option>
         {foreach from=$job_service_types item=type}
-            <option value="{$type.type_id}&{$type.price}">{$type.name}</option>
+            <option value="{$type.type_id}&{$type.price|replace:".":","}">{$type.name}</option>
         {/foreach}
     </select>
     oder neuen Service anlegen: 

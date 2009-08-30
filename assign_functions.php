@@ -30,6 +30,11 @@
         }
     }
     
+    function assign_cash ($offset, $cash) {
+        call_and_assign("get_cash(".$offset.", ".$cash.")", "cash", true);
+        return true;    
+    }
+    
     
     function assign_customer_info($customer_id) {    
         call_and_assign("get_customer_info(".$customer_id.")", "customer_info", false, true);      
@@ -69,41 +74,13 @@
 
     
     function assign_job_services ($job_id) {
-        
-        global $smarty;
-        global $db;
-
-        $db->run("get_job_services(".$job_id.")");
-        if ($db->error_result) {
-            display_errors(1);
-            return true;
-        }
-        else {
-            foreach ($types = $db->get_result_array() as $key => $val) {
-                $types[$key]['service_price'] = str_replace('.', ',', $types[$key]['service_price']);
-            }
-            
-            $smarty->assign('job_services', $types);
-        }
+        call_and_assign("get_job_services(".$job_id.")", "job_services", true);
         return true;
     }
     
+    
     function assign_job_service_types () {
-        
-        global $smarty;
-        global $db;
-
-        $db->run('get_job_service_types()');
-        if ($db->error_result) {
-            display_errors(1);
-            return true;
-        }
-        else {
-            foreach ($types = $db->get_result_array() as $key => $val) {
-                $types[$key]['price'] = str_replace('.', ',', $types[$key]['price']);
-            }
-            $smarty->assign('job_service_types', $types);
-        }
+        call_and_assign("get_job_service_types()", "job_service_types", true);
         return true;
     }
     

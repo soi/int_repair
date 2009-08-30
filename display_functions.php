@@ -79,7 +79,13 @@
 
         global $smarty;
 
-        assign_cash();
+        if (isset($_GET['offset']) && isset($_GET['length'])) {
+            assign_cash($_GET['offset'], $_GET['length']);
+        }
+        else {
+            assign_cash(0, 3);
+        }
+        
         $smarty->assign('content', $smarty->fetch("cash_overview.tpl"));
         return true;
      }
@@ -99,18 +105,8 @@
 
         global $smarty;
 
-        assign_jobs();
-        $smarty->assign('content', $smarty->fetch("job_overview.tpl"));
-        return true;
-     }
-     
-     
-     function display_report_overview() {
-
-        global $smarty;
-
         assign_latest_jobs(0, 3);
-        $smarty->assign('content', $smarty->fetch("report_overview.tpl"));
+        $smarty->assign('content', $smarty->fetch("job_overview.tpl"));
         return true;
      }
      

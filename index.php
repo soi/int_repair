@@ -15,8 +15,8 @@
         $everybody_sites = array('user_overview', 
                                  'customer_overview', 
                                  'cash_overview', 
-                                 'job_overview', 
-                                 'report_overview');                                 
+                                 'job_overview',
+                                 'complete_add_cash');                                 
         
         $tech_sites      = array('add_job', 
                                  'edit_job', 
@@ -65,7 +65,7 @@
             display_success($_GET['success'], true);
         } 
         if (isset($_GET['errors']) && ($_GET['errors'])) {
-            display_errors(explode($_GET['errors']));
+            display_errors(explode(',', $_GET['errors']));
         }
     }
 
@@ -198,10 +198,6 @@
             case 'job_overview' :
                 display_job_overview();
                 break;
-            
-            case 'report_overview' :
-                display_report_overview();
-                break;    
                 
             case 'user_overview' :
                 display_user_overview();

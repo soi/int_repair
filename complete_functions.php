@@ -1,4 +1,34 @@
 <?php 
+
+    function complete_add_cash() {
+        if (valid_request(array(isset($_POST['price']),
+                                isset($_POST['description'])))) {
+                                
+            global $db;
+            global $smarty;
+    
+            if (strlen($_POST['description']) > 150) {
+                redirect('cash_overview', '', '', 250);
+                return true;    
+            }
+            
+            $sql = "add_cash(".$_SESSION['user_id'].",
+                             ".str_replace(',', '.', $_POST['price']).",
+                             '".$_POST['description']."')";
+            $db->run($sql);
+            if ($db->error_result) {
+                redirect('cash_overview', '', '', array(1));
+                return true;
+            }
+            else {
+                redirect('cash_overview', '', 'add_cash');
+                return true;
+            }
+        }  
+        return true;  
+    }
+    
+    
     
     function complete_add_customer() {
         if (valid_request(array(isset($_POST['form_of_address']),
@@ -430,7 +460,7 @@
                     else {
                         header('HTTP/1.1 303 See Other ');
                     }
-                    header('Location: index.php?site=report_overview');
+                    header('Location: index.php?site=job_overview');
                 }
             }
             else  {

@@ -9,7 +9,6 @@
 <a href="index.php?site=cash_overview">cash</a> <br />
 <a href="index.php?site=customer_overview">customers</a> <br />
 <a href="index.php?site=job_overview">jobs</a> <br />
-<a href="index.php?site=report_overview">reports</a> <br />
 <a href="index.php?site=user_overview">users</a> <br /> <br />
 
 
