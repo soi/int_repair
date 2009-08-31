@@ -1,0 +1,103 @@
+/*Font types*/
+
+.small3 {
+    font-size: 0.6em;
+}
+
+.small2 {
+    font-size: 0.8em;
+}
+
+.small1 {
+    font-size: 0.9em;
+}
+
+.big2 {
+    font-size: 1.35em;
+}
+
+.big1 {
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+/*other*/
+
+.space_right {
+    padding-right: 40px;     
+}
+
+#main {
+    width: 620px;
+}
+
+#image {
+    width: 100%;
+}
+
+#sub_image {
+    float: right;
+    width: 230px;
+    text-align: center;
+    margin-bottom: 68px;
+}
+
+#address {
+    float: left;
+    width: 50%;
+    text-align: left;
+}
+
+#date_numbers {
+    float: right;
+    width: 40%;
+    text-align: right;    
+}
+
+#main_headline {
+    float: left;
+    text-align: left;
+    width: 100%;
+    padding: 90px 0px 20px 0px;
+}
+
+#services_wrap {
+    float: left;
+}
+
+#service_table {
+    border-collapse:collapse;
+    border-spacing: 2px;
+}
+
+.service_th {
+    padding: 1px 2px;
+}
+
+.service_td {
+    padding: 1px;
+}
+
+.amount_cell {
+    text-align: center;    
+}
+
+.price_cell {
+    text-align: right;    
+}
+
+#th_tr {
+    border: 2px;
+    border-style: solid;    
+}
+
+#first_coloumn {
+    width: 340px;
+}
+
+
+
+
+
+
+

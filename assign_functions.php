@@ -15,20 +15,35 @@
             display_errors(1);
             return true;
         }
-        elseif ($alert_when_empty && $db->empty_result) {
+        if ($alert_when_empty && $db->empty_result) {
             display_errors(3);
             return true;
         }
-        else {
-            if ($array) {
-                $smarty->assign($var_name, $db->get_result_array());
-            }
-            else {
-                $smarty->assign($var_name, $db->get_result_row());
-            }
-            return true;
+        if ($array) {
+            $smarty->assign($var_name, $db->get_result_array());
         }
+        else {
+            $smarty->assign($var_name, $db->get_result_row());
+        }
+        return true;
     }
+    
+    
+    function assign_bill_contact ($job_id) {
+        call_and_assign("get_bill_contact(".$job_id.")", "customer_info");
+        return true;
+    }
+    
+    
+    function assign_bill_info ($job_id) {
+        
+        global $smarty;
+    
+        $smarty->assign("bill_info", array('job_id' => $job_id, 'date' => date("m.d.Y")));
+        return true;
+    }
+    
+    
     
     function assign_cash ($offset, $cash) {
         call_and_assign("get_cash(".$offset.", ".$cash.")", "cash", true);
@@ -81,6 +96,12 @@
     
     function assign_job_services ($job_id) {
         call_and_assign("get_job_services(".$job_id.")", "job_services", true);
+        return true;
+    }
+    
+    
+    function assign_job_services_bill ($job_id) {
+        call_and_assign("get_job_services_bill(".$job_id.")", "job_services", true);
         return true;
     }
     

@@ -18,7 +18,11 @@ Beended: {$job_additional_info.finished} <br />
 <b>Telefonnummer 2:</b> {$job_info.c_tel_2}  <br />
 <b>Fax:</b> {$job_info.c_fax} <br />
 <b>E-mail:</b> {$job_info.c_email} <br />
+{if $job_additional_info.customer_listed} 
 <a href="index.php?site=customer_info&customer_id={$job_info.customer_id}">Heutige Kontaktdaten ansehen</a>
+{else}
+Der Kunde wird nicht mehr gef&uuml;hrt.
+{/if}
 <br /><br />
 
 
@@ -120,6 +124,8 @@ Beended: {$job_additional_info.finished} <br />
     <input type="submit" value="Service hinzuf&uuml;gen"/>
 </form>
 <br /><br />
+
+<a href="index.php?site=generate_bill&job_id={$job_info.job_id}" target="_blank">Rechnung erzeugen</a>
 
 
 

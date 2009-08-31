@@ -35,7 +35,8 @@
                                  'customer_info',
                                  'edit_customer',
                                  'reports_overview',
-                                 'user_overview');
+                                 'user_overview', 
+                                 'generate_bill');
                                                            
         $admin_sites     = array('add_user', 
                                  'complete_add_user', 
@@ -212,10 +213,19 @@
                 display_job_info();
                 break;
                 
+          // MISC
+
+            case 'generate_bill' :
+                display_bill();
+                $smarty->display('bill.tpl');
+                return true;
+                
             default: 
                 $smarty->assign('message', 'Unbekannte Seite.');
                 $smarty->display('login.tpl');
-                return true;    
+                return true; 
+                
+               
         }
     }
     else {

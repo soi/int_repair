@@ -133,6 +133,7 @@
                                 ".$bid.", 
                                 '".$_POST['description']."',
                                 '".$_POST['short_description']."',
+                                '".$customer_info['form_of_address']."',
                                 '".$customer_info['first_name']."',
                                 '".$customer_info['last_name']."',
                                 '".$customer_info['street']."',

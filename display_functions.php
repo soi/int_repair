@@ -132,12 +132,25 @@
     
             assign_customer_info($_GET['customer_id']);
             $smarty->assign('content', $smarty->fetch("customer_info.tpl"));
-            return true;
         }
+        return true;
      } 
      
     
     // MISC
+    
+    function display_bill() {
+    
+        if (valid_request(array(isset($_GET['job_id'])))) {
+    
+            global $smarty;             
+            assign_job_services_bill($_GET['job_id']);
+            assign_bill_contact($_GET['job_id']);
+            assign_bill_info($_GET['job_id']);
+        }
+        return true;
+           
+    }
     
     
     function display_success($success_action, $short_message = false, $related_id = 0) {
