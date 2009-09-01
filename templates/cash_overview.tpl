@@ -9,7 +9,8 @@
 <h3>Kassenbuch</h3>
 <a href="index.php?site=generate_cash_print&date_start={$date_start}&date_limit={$date_limit}">Druckbare Ansicht</a> <br />
 <input type="text" id="date_start" size="5" name="start_date" value="{$date_start}"/> -
-<input type="text" id="date_limit" size="5" name="start_date" value="{$date_limit}"/>
+<input type="text" id="date_limit" size="5" name="start_date" value="{$date_limit}"/> 
+
 &nbsp;&nbsp;
 <input type="button" value="Zeige" onclick="update_cash()"/>
 &nbsp;&nbsp;&nbsp;

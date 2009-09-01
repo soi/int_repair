@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>Kassenbeleg f&uuml;r {$cash_print_info.date_limit}-{$cash_print_info.date_start}</title>
+        <title>Kassenbeleg f&uuml;r {$cash_print_info.date_start}-{$cash_print_info.date_limit}</title>
         <link rel="stylesheet" type="text/css" href="stylesheets/cash_print.css" />
     </head>
     <body>
@@ -13,7 +13,7 @@
                 <span class="italic big2">Kassenbuch</span> <br />
             </div>
             <div id="general">
-                <span class="bold">Datum von-bis: </span>&nbsp;&nbsp;{$cash_print_info.date_limit}&nbsp;-&nbsp;{$cash_print_info.date_start} <br />
+                <span class="bold">Datum von-bis: </span>&nbsp;&nbsp;{$cash_print_info.date_start}&nbsp;-&nbsp;{$cash_print_info.date_limit} <br />
                 <span class="bold">&Uuml;bertrag: </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {$cash_print_info.carry|replace:".":","} &euro; <br />
             </div>
             <br />

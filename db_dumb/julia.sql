@@ -50,7 +50,7 @@ CREATE TABLE `cash` (
 
 LOCK TABLES `cash` WRITE;
 /*!40000 ALTER TABLE `cash` DISABLE KEYS */;
-INSERT INTO `cash` VALUES (69,1,'1',12.00,0.00,'Lankabel','2009-09-01 17:08:33'),(70,1,'2',532.00,532.00,'Computer','2009-09-01 17:08:46'),(71,1,'3',-2.00,530.00,'Kaffee','2009-09-01 17:08:59'),(72,1,'4',-2.00,528.00,'Kekse','2009-09-01 17:09:17'),(73,1,'5',2.32,530.32,'Adapter','2009-09-01 17:09:34'),(74,1,'6',-5.00,525.32,'Kuchen','2009-09-01 17:10:35'),(75,1,'7',-5.00,520.32,'Kuchen','2009-09-01 17:11:04'),(76,1,'8',-2.32,518.00,'Kuchen','2009-09-01 17:18:22'),(77,1,'123',15.00,15.00,'Kabel','2009-08-31 17:18:22');
+INSERT INTO `cash` VALUES (40,1,'123',15.00,15.00,'Kabel','2009-08-31 17:18:22'),(69,1,'1',12.00,0.00,'Lankabel','2009-09-01 17:08:33'),(70,1,'2',532.00,532.00,'Computer','2009-09-01 17:08:46'),(71,1,'3',-2.00,530.00,'Kaffee','2009-09-01 17:08:59'),(72,1,'4',-2.00,528.00,'Kekse','2009-09-01 17:09:17'),(73,1,'5',2.32,530.32,'Adapter','2009-09-01 17:09:34'),(74,1,'6',-5.00,525.32,'Kuchen','2009-09-01 17:10:35'),(75,1,'7',-5.00,520.32,'Kuchen','2009-09-01 17:11:04'),(76,1,'8',-2.32,518.00,'Kuchen','2009-09-01 17:18:22');
 /*!40000 ALTER TABLE `cash` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -759,7 +759,8 @@ BEGIN
   JOIN `user` as u
     ON c.u_id = u.u_id
   WHERE (date (c.`date`) <= str_to_date(_date_limit, '%d.%m.%y'))
-    AND (date (c.`date`) >= str_to_date(_date_start, '%d.%m.%y'));
+    AND (date (c.`date`) >= str_to_date(_date_start, '%d.%m.%y'))
+  ORDER BY c.cash_id;
 
 END */;;
 DELIMITER ;
@@ -787,14 +788,15 @@ BEGIN
   WHERE cash.cash_id = (SELECT max(cash_id) FROM cash WHERE `date` < str_to_date(_date_limit, '%d.%m.%y'));
 
 
-  SELECT round(@carry:=@carry+c.price, 2) as account,
-         c.price,
-         c.record,
-         c.`date`,
-         c.description
-  FROM cash as c
-  WHERE (date (c.`date`) <= str_to_date(_date_limit, '%d.%m.%y'))
-    AND (date (c.`date`) >= str_to_date(_date_start, '%d.%m.%y'));
+  SELECT round(@carry:=@carry+price, 2) as account,
+         price,
+         record,
+         `date`,
+         description
+  FROM cash
+  WHERE (date (`date`) <= str_to_date(_date_limit, '%d.%m.%y'))
+    AND (date (`date`) >= str_to_date(_date_start, '%d.%m.%y'))
+  ORDER BY cash_id;
 
 
 END */;;
@@ -815,23 +817,23 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `get_cash_print_info`(IN _date_start char(8), IN _date_limit char(8))
 BEGIN
-  DECLARE carry FLOAT(7,2) DEFAULT 0;
-  DECLARE in_total FLOAT(7,2) DEFAULT 0;
-  DECLARE out_total FLOAT(7,2) DEFAULT 0;
+  DECLARE carry FLOAT(7,2) DEFAULT 0.00;
+  DECLARE in_total FLOAT(7,2) DEFAULT 0.00;
+  DECLARE out_total FLOAT(7,2) DEFAULT 0.00;
 
   SELECT total
   INTO carry
   FROM cash
-  WHERE cash.cash_id = (SELECT max(cash_id) FROM cash WHERE `date` < str_to_date(_date_limit, '%d.%m.%y'));
+  WHERE cash.cash_id = (SELECT max(cash_id) FROM cash WHERE `date` < str_to_date(_date_start, '%d.%m.%y'));
 
-  SELECT sum(price)
+  SELECT ifnull(sum(price), 0.00)
   INTO in_total
   FROM cash
   WHERE price >= 0.00
     AND (date (`date`) <= str_to_date(_date_limit, '%d.%m.%y'))
     AND (date (`date`) >= str_to_date(_date_start, '%d.%m.%y'));
 
-  SELECT sum(price)
+  SELECT ifnull(sum(price), 0.00)
   INTO out_total
   FROM cash
   WHERE price < 0.00
@@ -1566,4 +1568,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2009-09-01 20:17:39
+-- Dump completed on 2009-09-01 20:53:51
