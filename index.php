@@ -16,7 +16,8 @@
                                  'customer_overview', 
                                  'cash_overview', 
                                  'job_overview',
-                                 'complete_add_cash');                                 
+                                 'complete_add_cash', 
+                                 'complete_reset_cash');                                 
         
         $tech_sites      = array('add_job', 
                                  'edit_job', 
@@ -60,11 +61,13 @@
     
     
     function parse_messages() {        
-        if (isset($_GET['success']) && ($_GET['success'])) {
-            display_success($_GET['success'], true);
+        if (isset($_SESSION['success'])) {
+            display_success($_SESSION['success'], true);
+            unset($_SESSION['success']);
         } 
-        if (isset($_GET['errors']) && ($_GET['errors'])) {
-            display_errors(explode(',', $_GET['errors']));
+        if (isset($_SESSION['errors'])) {
+            display_errors($_SESSION['errors']);
+            unset($_SESSION['errors']);
         }
     }
 
@@ -110,6 +113,7 @@
     if (in_array($_GET['site'], $perm_sites)) {
     
         parse_messages();
+        assign_stats();
     
         switch ($_GET['site']) { 
         
@@ -155,6 +159,12 @@
             case 'complete_add_user' :
                 complete_add_user();
                 break;
+                
+            case 'complete_reset_cash' :
+                complete_reset_cash();
+                break;
+                
+            
             
             //EDIT
             

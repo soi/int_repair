@@ -1,99 +1,166 @@
-/*Font types*/
+    body {
+        font-family: Serif;
+        line-height: 1.20em;
+        font-size: 0.9em;
+    }
+    
+    /*a {
+        text-decoration: none;
+    }*/
+    
+    h1, h2, h3, h4, h5, h6, p, form, hr, td, tbody, table, tr {
+        margin: 0;
+        padding: 0;
+    }
+    
+    
+    /*Font types*/
+    
+    .small3 {
+        font-size: 0.6em;
+    }
+    
+    .small2 {
+        font-size: 0.8em;
+    }
+    
+    .small1 {
+        font-size: 0.9em;
+    }
+    
+    .big3 {
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+    
+    .big2 {
+        font-size: 1.55em;
+    }
+    
+    .big1 {
+        font-size: 1.0em;
+        font-weight: bold;
+    }
 
-.small3 {
-    font-size: 0.6em;
-}
+    
+    /*main table*/
+    
+    #services_wrap {
+        float: left;
+    }
+    
+    #service_table {
+        border-collapse:collapse;
+        border-spacing: 2px;
+    }
+    
+    .service_th {
+        padding: 2px 3px;
+    }
+    
+    .service_td {
+        padding: 1px 3px;
+    }
+    
+    .amount_cell {
+        text-align: center;
+    }
+    
+    .price_cell {
+        text-align: right;
+    }
+    
+    #th_tr {
+        border: 2px;
+        border-style: solid;
+    }
+    
+    #first_coloumn {
+        width: 340px;
+    }
+    
+    /*other*/
+    
+    .space_right {
+        padding-right: 40px;     
+    }
+    
+    #main {     
+        width: 620px;
+        text-align: left;
+    }
+    
+    #image {
+        width: 100%;
+    }
+    
+    #sub_image {
+        float: right;
+        width: 230px;
+        text-align: center;
+        margin-bottom: 68px;
+    }
+    
+    #address {
+        float: left;
+        width: 50%;    
+    }
+    
+    #date_numbers {
+        float: right;
+        width: 200;
+        text-align: right;    
+    }
+    
+    #numbers_wrap {
+        float: right;
+        width: 100%;    
+    }
+    
+    #numbers_desc {
+        float: left;       
+    }
+    
+    #numbers {
+        float: right;
+        text-align: right;   
+    }
+    
+    #main_headline {
+        float: left;
+        width: 100%;
+        padding: 40px 0px;
+    }
+    
+    #total {
+        float: right;
+        text-decoration:underline;
+        width: 100%;
+        text-align: right;
+        margin: 50px 4px 0px 0px;
+    }
+    
+    #thanks {
+        float: left;
+        width: 100%;
+        text-align: left;
+        margin-top: 80px;
+    }
+    
+    #footer_wrap {
+        float: left;
+        margin-top: 180px;
+        width: 100%;
+    }
+    
+    .footer {
+        float: left;
+        width: 33%; 
+        line-height: 1.25em;   
+    }
 
-.small2 {
-    font-size: 0.8em;
-}
 
-.small1 {
-    font-size: 0.9em;
-}
 
-.big2 {
-    font-size: 1.35em;
-}
-
-.big1 {
-    font-size: 0.9em;
-    font-weight: bold;
-}
-
-/*other*/
-
-.space_right {
-    padding-right: 40px;     
-}
-
-#main {
-    width: 620px;
-}
-
-#image {
-    width: 100%;
-}
-
-#sub_image {
-    float: right;
-    width: 230px;
-    text-align: center;
-    margin-bottom: 68px;
-}
-
-#address {
-    float: left;
-    width: 50%;
-    text-align: left;
-}
-
-#date_numbers {
-    float: right;
-    width: 40%;
-    text-align: right;    
-}
-
-#main_headline {
-    float: left;
-    text-align: left;
-    width: 100%;
-    padding: 90px 0px 20px 0px;
-}
-
-#services_wrap {
-    float: left;
-}
-
-#service_table {
-    border-collapse:collapse;
-    border-spacing: 2px;
-}
-
-.service_th {
-    padding: 1px 2px;
-}
-
-.service_td {
-    padding: 1px;
-}
-
-.amount_cell {
-    text-align: center;    
-}
-
-.price_cell {
-    text-align: right;    
-}
-
-#th_tr {
-    border: 2px;
-    border-style: solid;    
-}
-
-#first_coloumn {
-    width: 340px;
-}
 
 
 

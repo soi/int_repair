@@ -10,6 +10,7 @@
         global $smarty;
         global $db;
 
+        //echo $sql."<br />";
         $db->run($sql);
         if ($db->error_result) {            
             display_errors(1);
@@ -29,25 +30,24 @@
     }
     
     
-    function assign_bill_contact ($job_id) {
-        call_and_assign("get_bill_contact(".$job_id.")", "customer_info");
+    function assign_bill_info ($job_id) {
+        call_and_assign("get_bill_info(".$job_id.")", "bill_info");
         return true;
+    }    
+    
+    function assign_cash ($date_start, $date_limit) {
+        call_and_assign("get_cash('".$date_start."', '".$date_limit."')", "cash", true);
+        return true;    
     }
     
     
-    function assign_bill_info ($job_id) {
+    function assign_cash_time_limit($date_start, $date_limit) {
         
         global $smarty;
-    
-        $smarty->assign("bill_info", array('job_id' => $job_id, 'date' => date("m.d.Y")));
+        
+        $smarty->assign('date_start', $date_start);
+        $smarty->assign('date_limit', $date_limit);
         return true;
-    }
-    
-    
-    
-    function assign_cash ($offset, $cash) {
-        call_and_assign("get_cash(".$offset.", ".$cash.")", "cash", true);
-        return true;    
     }
     
     
@@ -92,6 +92,11 @@
         call_and_assign("get_job_info(".$job_id.")", "job_info", false, true);
         return true;
     }
+    
+    function assign_jobs_latest_changes($offset, $length) {
+        call_and_assign("get_jobs_latest_changes(".$offset.", ".$length.")", "jobs_latest_changes", true);
+        return true;    
+    }
 
     
     function assign_job_services ($job_id) {
@@ -121,6 +126,11 @@
     function assign_job_status_types () {
         call_and_assign("get_job_status_types()", "job_status_types", true);
         return true;
+    }
+    
+    function assign_stats() {
+        call_and_assign("get_stats()", "stats", false);
+        return true;    
     }
     
     /**

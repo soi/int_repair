@@ -12,6 +12,12 @@
                 return true;    
             }
             
+            str_replace('-', '', $_POST['price']);
+            
+            if ($_POST['type'] == 'out') {                
+                $_POST['price'] = $_POST['price'] - (2 * $_POST['price']); 
+            }
+            
             $sql = "add_cash(".$_SESSION['user_id'].",
                              ".str_replace(',', '.', $_POST['price']).",
                              '".$_POST['description']."')";
@@ -488,6 +494,36 @@
     }
     
     
+    function complete_reset_cash () {
+        if (valid_request(array(isset($_POST['reset_status'])))) {
+
+            global $db;
+            global $smarty;
+
+            $db->run('get_cash_total()');
+            if ($db->error_result) {
+                redirect('cash_overview', '', '', array(1));
+                return true;
+            }
+            $total = $db->get_result_row();
+
+            $sql = "add_cash(".$_SESSION['user_id'].",
+                             ".(str_replace(',', '.', $_POST['reset_status']) - $total['total']).",
+                             'Zur&uuml;ckgesetzt')";
+            $db->run($sql);
+            if ($db->error_result) {
+                redirect('cash_overview', '', '', array(1));
+                return true;
+            }
+            else {
+                redirect('cash_overview', '', 'add_cash');
+                return true;
+            }
+        }
+        return true;
+    }
+    
+    
     function redirect($site, $addition = '', $success = '', $errors = array()) {
     
         $url = "http://".$_SERVER['HTTP_HOST']."/int/index.php?site=".$site;
@@ -496,10 +532,10 @@
             $url .= "&".$addition;
         }
         if ($errors) {
-            $url .= "&errors=".implode(',', $errors);
+            $_SESSION['errors'] = $errors;
         }
         if ($success) {
-            $url .= "&success=".$success;
+            $_SESSION['success'] = $success;
         } 
         header('Location: '.$url);
     }

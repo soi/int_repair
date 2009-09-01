@@ -80,11 +80,14 @@
 
         global $smarty;
 
-        if (isset($_GET['offset']) && isset($_GET['length'])) {
-            assign_cash($_GET['offset'], $_GET['length']);
+        if (isset($_GET['date_start']) && isset($_GET['date_limit'])) {
+            assign_cash($_GET['date_start'], $_GET['date_limit']);
+            assign_cash_time_limit($_GET['date_start'], $_GET['date_limit']);
         }
         else {
-            assign_cash(0, 3);
+            $today = date('d.m.y');
+            assign_cash($today, $today);
+            assign_cash_time_limit($today, $today);
         }
         
         $smarty->assign('content', $smarty->fetch("cash_overview.tpl"));
@@ -107,6 +110,7 @@
         global $smarty;
 
         assign_latest_jobs(0, 3);
+        assign_jobs_latest_changes(0, 3);
         $smarty->assign('content', $smarty->fetch("job_overview.tpl"));
         return true;
      }
@@ -145,7 +149,6 @@
     
             global $smarty;             
             assign_job_services_bill($_GET['job_id']);
-            assign_bill_contact($_GET['job_id']);
             assign_bill_info($_GET['job_id']);
         }
         return true;

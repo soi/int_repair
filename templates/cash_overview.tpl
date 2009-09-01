@@ -1,4 +1,24 @@
+{literal}
+    <script language="javascript" type="text/javascript">
+        function update_cash() {
+            window.location = 'http://' + window.location.host + '/int/index.php?site=cash_overview&date_start=' + document.getElementById('date_start').value + '&date_limit=' + document.getElementById('date_limit').value;
+        }
+    </script>
+{/literal}
+
 <h3>Kassenbuch</h3>
+<input type="text" id="date_start" size="5" name="start_date" value="{$date_start}"/> -
+<input type="text" id="date_limit" size="5" name="start_date" value="{$date_limit}"/>
+&nbsp;&nbsp;
+<input type="button" value="Zeige" onclick="update_cash()"/>
+&nbsp;&nbsp;&nbsp;
+
+<form action="index.php?site=complete_reset_cash" method="post">
+    <input type="text" name="reset_status" value="100,00"/>&euro;
+    <input type="submit" value="Zur&uuml;cksetzen"/>
+</form>                 
+<br />
+
 <table>
     <th>Beschreibung</th>
     <th>Preis in &euro;</th>
@@ -33,7 +53,9 @@
     Beschreibung:
     <input type="text" name="description"/>
     Preis:
-    <input type="text" name="price" size="4"/> &euro;
+    <input type="text" name="price" size="4"/> &euro; <br />
+    Einnahme <input type="radio" name="type" value="in" checked=""/>
+    Ausgabe <input type="radio" name="type" value="out"/>           <br />
     <input type="submit" value="Eintrag hinzuf&uuml;gen"/>
 </form>
 <br /><br />
