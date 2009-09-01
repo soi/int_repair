@@ -2,7 +2,8 @@
 
     function complete_add_cash() {
         if (valid_request(array(isset($_POST['price']),
-                                isset($_POST['description'])))) {
+                                isset($_POST['description']), 
+                                isset($_POST['record']),))) {
                                 
             global $db;
             global $smarty;
@@ -12,14 +13,21 @@
                 return true;    
             }
             
+            if (strlen($_POST['record']) >20) {
+                redirect('cash_overview', '', '', 251);
+                return true;
+            }
+            
             str_replace('-', '', $_POST['price']);
+            $_POST['price'] = str_replace(',', '.', $_POST['price']);
             
             if ($_POST['type'] == 'out') {                
                 $_POST['price'] = $_POST['price'] - (2 * $_POST['price']); 
             }
             
             $sql = "add_cash(".$_SESSION['user_id'].",
-                             ".str_replace(',', '.', $_POST['price']).",
+                             '".$_POST['record']."',
+                             ".$_POST['price'].",
                              '".$_POST['description']."')";
             $db->run($sql);
             if ($db->error_result) {
@@ -508,6 +516,7 @@
             $total = $db->get_result_row();
 
             $sql = "add_cash(".$_SESSION['user_id'].",
+                             '',
                              ".(str_replace(',', '.', $_POST['reset_status']) - $total['total']).",
                              'Zur&uuml;ckgesetzt')";
             $db->run($sql);

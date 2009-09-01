@@ -7,6 +7,7 @@
 {/literal}
 
 <h3>Kassenbuch</h3>
+<a href="index.php?site=generate_cash_print&date_start={$date_start}&date_limit={$date_limit}">Druckbare Ansicht</a> <br />
 <input type="text" id="date_start" size="5" name="start_date" value="{$date_start}"/> -
 <input type="text" id="date_limit" size="5" name="start_date" value="{$date_limit}"/>
 &nbsp;&nbsp;
@@ -19,11 +20,12 @@
 </form>                 
 <br />
 
-<table>
+<table>   
     <th>Beschreibung</th>
     <th>Preis in &euro;</th>
     <th>Gesamt in &euro;</th>
     <th>Verk&auml;ufer</th>
+    <th>Beleg</th>
     <th>Datum</th>
     {foreach from=$cash item=entry}
         <tr>
@@ -41,6 +43,7 @@
                  {$entry.total|replace:".":","}
                  </span> </td>
             <td>{$entry.first_name} {$entry.last_name}</td>
+            <td>{$entry.record}</td>
             <td>{$entry.date}</td>
         </tr>
     {/foreach}
@@ -53,7 +56,9 @@
     Beschreibung:
     <input type="text" name="description"/>
     Preis:
-    <input type="text" name="price" size="4"/> &euro; <br />
+    <input type="text" name="price" size="4"/> &euro; 
+    Beleg: 
+    <input type="text" name="record" size="7"/><br />
     Einnahme <input type="radio" name="type" value="in" checked=""/>
     Ausgabe <input type="radio" name="type" value="out"/>           <br />
     <input type="submit" value="Eintrag hinzuf&uuml;gen"/>

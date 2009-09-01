@@ -33,6 +33,7 @@ DROP TABLE IF EXISTS `cash`;
 CREATE TABLE `cash` (
   `cash_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `u_id` int(10) unsigned NOT NULL,
+  `record` varchar(20) NOT NULL,
   `price` float(7,2) NOT NULL,
   `total` float(7,2) NOT NULL,
   `description` varchar(150) NOT NULL,
@@ -40,7 +41,7 @@ CREATE TABLE `cash` (
   PRIMARY KEY (`cash_id`),
   KEY `FK_cash_1` (`u_id`),
   CONSTRAINT `FK_cash_1` FOREIGN KEY (`u_id`) REFERENCES `user` (`u_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +50,7 @@ CREATE TABLE `cash` (
 
 LOCK TABLES `cash` WRITE;
 /*!40000 ALTER TABLE `cash` DISABLE KEYS */;
-INSERT INTO `cash` VALUES (8,1,10.00,10.00,'Lankabel','2009-08-30 05:14:01'),(9,1,5.50,15.50,'Computer','2009-08-30 05:14:33'),(11,1,10.00,10.00,'Rabatt','2009-08-30 05:29:56'),(16,1,12.00,22.00,'abc','2009-08-30 05:35:11'),(17,1,12.60,34.60,'gk','2009-08-30 05:35:27'),(18,1,33.00,67.60,'Rabatt','2009-08-30 05:35:40'),(19,1,-66.00,1.60,'Rabatt','2009-08-30 05:35:50'),(20,1,-0.12,1.48,'Rabatt','2009-08-30 05:36:02'),(21,1,-2.00,-0.52,'Rabatt','2009-08-30 05:36:19'),(22,1,2.00,1.48,'sf','2009-08-30 05:38:53'),(23,1,-1.48,0.00,'j','2009-08-30 05:39:50'),(24,1,0.00,0.00,'sdv','2009-08-30 05:40:12'),(25,1,23.00,23.00,'xb','2009-08-30 05:45:03'),(26,1,-12.34,10.66,'test','2009-08-30 06:09:25'),(27,1,14.58,25.24,'test2','2009-08-31 21:44:23'),(28,1,165.58,190.82,'Hallo','2009-08-31 21:44:32'),(29,1,100.00,290.82,'Zur&uuml;chgesetzt','2009-09-01 00:10:41'),(30,1,0.00,290.82,'Zur&uuml;chgesetzt','2009-09-01 00:11:17'),(31,1,0.00,290.82,'Zur&uuml;chgesetzt','2009-09-01 00:14:14'),(32,1,0.00,290.82,'Zur&uuml;chgesetzt','2009-09-01 00:17:29'),(33,1,0.00,290.82,'Zur&uuml;chgesetzt','2009-09-01 00:20:05'),(34,1,-11.11,279.71,'Zur&uuml;chgesetzt','2009-09-01 00:22:40'),(35,1,11.11,290.82,'Zur&uuml;chgesetzt','2009-09-01 00:23:00'),(36,1,0.00,290.82,'Zur&uuml;chgesetzt','2009-09-01 00:23:13'),(37,1,0.00,290.82,'Zur&uuml;chgesetzt','2009-09-01 00:23:15'),(38,1,0.00,290.82,'Zur&uuml;chgesetzt','2009-09-01 00:23:55'),(39,1,0.00,290.82,'Zur&uuml;chgesetzt','2009-09-01 00:24:36'),(40,1,0.00,290.82,'Zur&uuml;chgesetzt','2009-09-01 00:24:47'),(41,1,0.00,290.82,'Zur&uuml;chgesetzt','2009-09-01 00:25:32'),(42,1,0.00,290.82,'Zur&uuml;chgesetzt','2009-09-01 00:25:42'),(43,1,0.00,290.82,'Zur&uuml;chgesetzt','2009-09-01 00:26:06'),(44,1,0.00,290.82,'Zur&uuml;chgesetzt','2009-09-01 00:33:47'),(45,1,-50.00,240.82,'Zur&uuml;chgesetzt','2009-09-01 00:36:44'),(46,1,-140.82,100.00,'Zur&uuml;chgesetzt','2009-09-01 00:42:59'),(47,1,1231.00,1331.00,'','2009-09-01 00:48:01'),(48,1,-1231.00,100.00,'Zur&uuml;chgesetzt','2009-09-01 00:48:16'),(49,1,45.00,145.00,'test2','2009-09-01 00:57:15'),(50,1,-45.00,100.00,'Zur&uuml;chgesetzt','2009-09-01 00:58:02'),(51,1,100.62,200.62,'Barzahlung Rechnung2','2009-09-01 01:28:06'),(52,1,10.78,211.40,'hello','2009-09-01 01:38:44'),(53,1,25.00,236.40,'Hallo','2009-09-01 01:38:54'),(54,1,10.00,246.40,'tj','2009-09-01 01:39:31'),(55,1,23.00,269.40,'mz','2009-09-01 01:40:00'),(56,1,12.00,281.40,'rhn','2009-09-01 01:40:14'),(57,1,21.00,302.40,'egbgb','2009-09-01 01:40:53'),(58,1,12.00,314.40,'tj','2009-09-01 01:41:34'),(59,1,-12.00,302.40,'wgeg','2009-09-01 01:42:40'),(60,1,-202.40,100.00,'Zur&uuml;ckgesetzt','2009-09-01 01:54:48');
+INSERT INTO `cash` VALUES (69,1,'1',12.00,0.00,'Lankabel','2009-09-01 17:08:33'),(70,1,'2',532.00,532.00,'Computer','2009-09-01 17:08:46'),(71,1,'3',-2.00,530.00,'Kaffee','2009-09-01 17:08:59'),(72,1,'4',-2.00,528.00,'Kekse','2009-09-01 17:09:17'),(73,1,'5',2.32,530.32,'Adapter','2009-09-01 17:09:34'),(74,1,'6',-5.00,525.32,'Kuchen','2009-09-01 17:10:35'),(75,1,'7',-5.00,520.32,'Kuchen','2009-09-01 17:11:04'),(76,1,'8',-2.32,518.00,'Kuchen','2009-09-01 17:18:22'),(77,1,'123',15.00,15.00,'Kabel','2009-08-31 17:18:22');
 /*!40000 ALTER TABLE `cash` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -314,6 +315,7 @@ DELIMITER ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `add_cash`(IN _user_id INTEGER UNSIGNED,
+                                     IN _record CHAR(20),
                                      IN _price FLOAT,
                                      IN _description CHAR(150))
 BEGIN
@@ -324,8 +326,9 @@ BEGIN
   FROM cash
   WHERE cash_id = (SELECT max(cash_id) FROM cash);
 
-  INSERT cash (u_id, price, total, description, `date`) VALUES (
+  INSERT cash (u_id, record, price, total, description, `date`) VALUES (
     _user_id,
+    _record,
     _price,
     new_total,
     _description,
@@ -747,6 +750,7 @@ BEGIN
   SELECT u.u_id as user_id,
          u.first_name,
          u.last_name,
+         c.record,
          c.price,
          c.total,
          c.`date`,
@@ -756,6 +760,91 @@ BEGIN
     ON c.u_id = u.u_id
   WHERE (date (c.`date`) <= str_to_date(_date_limit, '%d.%m.%y'))
     AND (date (c.`date`) >= str_to_date(_date_start, '%d.%m.%y'));
+
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_cash_print` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `get_cash_print`(IN _date_start char(8), IN _date_limit char(8))
+BEGIN
+  SET @carry = 0.00;
+
+  SELECT total
+  INTO @carry
+  FROM cash
+  WHERE cash.cash_id = (SELECT max(cash_id) FROM cash WHERE `date` < str_to_date(_date_limit, '%d.%m.%y'));
+
+
+  SELECT round(@carry:=@carry+c.price, 2) as account,
+         c.price,
+         c.record,
+         c.`date`,
+         c.description
+  FROM cash as c
+  WHERE (date (c.`date`) <= str_to_date(_date_limit, '%d.%m.%y'))
+    AND (date (c.`date`) >= str_to_date(_date_start, '%d.%m.%y'));
+
+
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `get_cash_print_info` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `get_cash_print_info`(IN _date_start char(8), IN _date_limit char(8))
+BEGIN
+  DECLARE carry FLOAT(7,2) DEFAULT 0;
+  DECLARE in_total FLOAT(7,2) DEFAULT 0;
+  DECLARE out_total FLOAT(7,2) DEFAULT 0;
+
+  SELECT total
+  INTO carry
+  FROM cash
+  WHERE cash.cash_id = (SELECT max(cash_id) FROM cash WHERE `date` < str_to_date(_date_limit, '%d.%m.%y'));
+
+  SELECT sum(price)
+  INTO in_total
+  FROM cash
+  WHERE price >= 0.00
+    AND (date (`date`) <= str_to_date(_date_limit, '%d.%m.%y'))
+    AND (date (`date`) >= str_to_date(_date_start, '%d.%m.%y'));
+
+  SELECT sum(price)
+  INTO out_total
+  FROM cash
+  WHERE price < 0.00
+    AND (date (`date`) <= str_to_date(_date_limit, '%d.%m.%y'))
+    AND (date (`date`) >= str_to_date(_date_start, '%d.%m.%y'));
+
+  SELECT carry,
+         in_total,
+         out_total,
+         (in_total + out_total) as total,
+         now() as cur_date,
+         _date_start as date_start,
+         _date_limit as date_limit;
 
 END */;;
 DELIMITER ;
@@ -1477,4 +1566,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2009-09-01  3:04:48
+-- Dump completed on 2009-09-01 20:17:39

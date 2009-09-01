@@ -37,7 +37,8 @@
                                  'edit_customer',
                                  'reports_overview',
                                  'user_overview', 
-                                 'generate_bill');
+                                 'generate_bill', 
+                                 'generate_cash_print');
                                                            
         $admin_sites     = array('add_user', 
                                  'complete_add_user', 
@@ -223,11 +224,16 @@
                 display_job_info();
                 break;
                 
-          // MISC
+          // GENERATE
 
             case 'generate_bill' :
                 display_bill();
                 $smarty->display('bill.tpl');
+                return true;
+                
+            case 'generate_cash_print' :
+                display_cash_print();
+                $smarty->display('cash_print.tpl');
                 return true;
                 
             default: 

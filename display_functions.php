@@ -141,7 +141,7 @@
      } 
      
     
-    // MISC
+    // PRINT
     
     function display_bill() {
     
@@ -154,6 +154,20 @@
         return true;
            
     }
+    
+    function display_cash_print() {
+
+        if (valid_request(array(isset($_GET['date_start']), isset($_GET['date_limit'])))) {
+
+            global $smarty;
+            assign_cash_print($_GET['date_start'], $_GET['date_limit']);
+            assign_cash_print_info($_GET['date_start'], $_GET['date_limit']);
+        }
+        return true;
+
+    }
+    
+    //MISC
     
     
     function display_success($success_action, $short_message = false, $related_id = 0) {

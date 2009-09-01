@@ -1,0 +1,97 @@
+    body {
+        font-family: Sans-Serif;
+        line-height: 1.20em;
+        font-size: 1.0em;
+    }
+    
+    h1, h2, h3, h4, h5, h6, p, form, hr, td, tbody, table, tr {
+        margin: 0;
+        padding: 0;
+    }
+
+    .small3 {
+        font-size: 0.6em;
+    }
+
+    .small2 {
+        font-size: 0.8em;
+    }
+
+    .small1 {
+        font-size: 0.9em;
+    }
+
+    .big3 {
+        font-size: 1.1em;
+    }
+
+    .big2 {
+        font-size: 1.55em;
+    }
+
+    .big1 {
+        font-size: 1.0em;
+    }
+    
+    .italic {
+        font-style: italic;
+    }
+    
+    .bold {
+        font-weight: bold;  
+    }
+
+    #main {
+        width: 620px;
+        text-align: left;
+    }
+
+    #head {
+        float: left;
+        width: 100%;
+        text-align: right;
+    }
+    
+    #table {
+        border-collapse:collapse;
+        border-spacing: 2px;
+    }
+    
+    #th_tr {
+        border: 2px;
+        border-style: solid;
+    }
+
+    .th {
+        padding: 8px 3px;
+    }
+
+    .td {
+        padding: 2px 3px;
+    }
+    
+    .price_cell {
+        text-align: right;
+    }
+    
+    .desc_cell {
+        width: 175px;    
+    }
+    
+    .record_cell {
+        width: 60px; 
+        text-align: center;   
+    }
+         
+    .fill_row {
+        padding: 10px 0px;
+    } 
+    
+    .final_row {
+        padding-top: 40px;
+    }
+    
+    #final_cell {
+        border: 2px;
+    } 
+

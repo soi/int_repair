@@ -33,11 +33,24 @@
     function assign_bill_info ($job_id) {
         call_and_assign("get_bill_info(".$job_id.")", "bill_info");
         return true;
-    }    
+    }   
+     
     
     function assign_cash ($date_start, $date_limit) {
         call_and_assign("get_cash('".$date_start."', '".$date_limit."')", "cash", true);
         return true;    
+    }
+    
+    
+    function assign_cash_print ($date_start, $date_limit) {
+        call_and_assign("get_cash_print('".$date_start."', '".$date_limit."')", "cash_print", true);
+        return true;
+    }
+    
+    
+    function assign_cash_print_info ($date_start, $date_limit) {
+        call_and_assign("get_cash_print_info('".$date_start."', '".$date_limit."')", "cash_print_info");
+        return true;
     }
     
     
