@@ -13,7 +13,7 @@
 
 &nbsp;&nbsp;
 <input type="button" value="Zeige" onclick="update_cash()"/>
-&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;
 
 <form action="index.php?site=complete_reset_cash" method="post">
     <input type="text" name="reset_status" value="100,00"/>&euro;

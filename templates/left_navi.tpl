@@ -1,6 +1,6 @@
 <a href="index.php?site=login">login</a> <br />
 <a href="index.php?site=complete_logout">logout</a> <br />  <br />
-
+test
 <a href="index.php?site=add_user">add_user</a> <br />
 <a href="index.php?site=add_customer">add_cutomer</a> <br /> 
 <a href="index.php?site=add_job">add_job</a> <br />   <br />
