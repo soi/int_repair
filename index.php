@@ -254,7 +254,7 @@
     //assigning page parts that are always visible
     //$smarty->assign('head', $smarty->fetch("head.tpl"));
     $smarty->assign('left_navi', $smarty->fetch("left_navi.tpl"));
-    $smarty->assign('right_navi', $smarty->fetch("right_navi.tpl"));
+    //$smarty->assign('right_navi', $smarty->fetch("right_navi.tpl"));
     $smarty->assign('footer', $smarty->fetch("footer.tpl"));
     
     $smarty->display('index.tpl');

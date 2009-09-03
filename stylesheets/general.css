@@ -1,7 +1,7 @@
 body {
     font-family: Sans-Serif;
     line-height: 1.35em;
-    font-size: 1.0em;
+    font-size: 13.34px;
 }
 
 /*a {
@@ -12,5 +12,28 @@ h1, h2, h3, h4, h5, h6, p, form, hr, td, tbody, table, tr {
     margin: 0;
     padding: 0;
 }
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: #000;    
+} 
+
+a:visited {
+    color: #000;
+}
+
+a:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+a:active {
+    color:#000;
+}
+
+
 
 
