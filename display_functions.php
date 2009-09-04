@@ -125,6 +125,40 @@
         return true;
      }    
      
+     
+     function display_jobs_latest_changes() {
+        
+        global $smarty;   
+        
+        if (isset($_GET['start'] && $_GET['limit'])) {
+            assign_jobs_latest_changes($_GET['start'], $_GET['limit']);
+            assign_jobs_latest_changes_info($_GET['start'], $_GET['limit']); 
+        } 
+        else {
+            assign_jobs_latest_changes(0, 20);
+            assign_jobs_latest_changes_info(0, 20);
+        }           
+        $smarty->assign('content', $smarty->fetch("latest_changes.tpl"));        
+        return true;
+     }
+     
+     
+     function display_latest_jobs() {
+
+        global $smarty;
+
+        if (isset($_GET['start'] && $_GET['limit'])) {
+            assign_jobs_latest_changes($_GET['start'], $_GET['limit']);
+            assign_jobs_latest_changes_info($_GET['start'], $_GET['limit']);
+        }
+        else {
+            assign_jobs_latest_changes(0, 20);
+            assign_jobs_latest_changes_info(0, 20);
+        }
+        $smarty->assign('content', $smarty->fetch("latest_jobs.tpl"));
+        return true;
+     }
+     
      //DETAILS
      
      

@@ -94,6 +94,21 @@
         return true;
     }
     
+    function assign_latest_jobs_info($offset, $length) {
+
+        global $smarty;
+        global $db;
+
+        $db->run("get_latest_jobs_count()");
+        if ($db->error_result) {
+            redirect('job_overview', '', '', array(1));
+            return true;
+        }
+        $count = $db->get_result_row();
+        $smarty->assign('jobs_latest_jobs_info', array('start' => $offset, 'limit' =>  $length, 'count' => $count['count']);
+        return true;
+    }
+    
     
     function assign_job_additional_info ($job_id) {
         call_and_assign("get_job_additional_info(".$job_id.")", "job_additional_info", false, true);
@@ -109,6 +124,21 @@
     function assign_jobs_latest_changes($offset, $length) {
         call_and_assign("get_jobs_latest_changes(".$offset.", ".$length.")", "jobs_latest_changes", true);
         return true;    
+    }
+    
+    function assign_jobs_latest_changes_info($offset, $length) {
+    
+        global $smarty;
+        global $db;
+        
+        $db->run("get_job_latest_changes_count()");
+        if ($db->error_result) {
+            redirect('job_overview', '', '', array(1));
+            return true;
+        }
+        $count = $db->get_result_row();
+        $smarty->assign('jobs_latest_changes_info', array('start' => $offset, 'limit' =>  $kength, 'count' => $count['count']);
+        return true;
     }
 
     

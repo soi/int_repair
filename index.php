@@ -17,7 +17,9 @@
                                  'cash_overview', 
                                  'job_overview',
                                  'complete_add_cash', 
-                                 'complete_reset_cash');                                 
+                                 'complete_reset_cash', 
+                                 'latest_jobs', 
+                                 'latest_changes');                                 
         
         $tech_sites      = array('add_job', 
                                  'edit_job', 
@@ -212,6 +214,14 @@
             case 'user_overview' :
                 display_user_overview();
                 break;
+                
+            case 'latest_jobs'
+                display_latest_jobs();
+                break;
+                
+            case 'latest_changes'
+                display_jobs_latest_changes();
+                break;
             
            //DETAILS
            
@@ -252,9 +262,7 @@
     
     
     //assigning page parts that are always visible
-    //$smarty->assign('head', $smarty->fetch("head.tpl"));
     $smarty->assign('left_navi', $smarty->fetch("left_navi.tpl"));
-    //$smarty->assign('right_navi', $smarty->fetch("right_navi.tpl"));
     $smarty->assign('footer', $smarty->fetch("footer.tpl"));
     
     $smarty->display('index.tpl');

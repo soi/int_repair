@@ -42,7 +42,7 @@
                 <div id="navi">
                      {$left_navi}
                 </div>
-                <div id="mid_line"></div>
+                <!-- <div id="mid_line"></div>  -->
                 <div id="content_main" align="left">
                     <div id="error_message_wrap" align="center">
                         {$error_message}
