@@ -1,14 +1,30 @@
-<a href="index.php?site=login">login</a> <br />
-<a href="index.php?site=complete_logout">logout</a> <br />  <br />
+<ul>
+    <li>
+        <a href="index.php?site=job_overview">Auftr&auml;ge</a>
+        <a class="add" href="index.php?site=add_job"><img src="pics/add.jpg" border="0" height="18"  alt="hinzu" /></a> 
+    </li>
+    <li>
+        <a href="index.php?site=customer_overview">Kunden</a> 
+        <a class="add" href="index.php?site=add_customer"><img src="pics/add.jpg" border="0" height="18" width="" alt="hinzu" /></a> 
+    </li>
+    <li>
+        <a href="index.php?site=user_overview">Mitarbeiter</a> 
+        <a class="add" href="index.php?site=add_user"><img src="pics/add.jpg" border="0" height="18" width="" alt="hinzu" /></a> 
+    </li>
+    <li>
+        <a href="index.php?site=cash_overview">Kasse</a> 
+    </li>
+    <li>
+        <a href="index.php?site=complete_logout">Logout</a>
+    </li>
+</ul>
+   
 
-<a href="index.php?site=add_user">add_user</a> <br />
-<a href="index.php?site=add_customer">add_cutomer</a> <br /> 
-<a href="index.php?site=add_job">add_job</a> <br />   <br />
+ 
 
-<a href="index.php?site=cash_overview">cash</a> <br />
-<a href="index.php?site=customer_overview">customers</a> <br />
-<a href="index.php?site=job_overview">jobs</a> <br />
-<a href="index.php?site=user_overview">users</a> <br /> <br />
+
+
+
 
 
 

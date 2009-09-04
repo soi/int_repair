@@ -41,7 +41,7 @@ CREATE TABLE `cash` (
   PRIMARY KEY (`cash_id`),
   KEY `FK_cash_1` (`u_id`),
   CONSTRAINT `FK_cash_1` FOREIGN KEY (`u_id`) REFERENCES `user` (`u_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,7 +50,7 @@ CREATE TABLE `cash` (
 
 LOCK TABLES `cash` WRITE;
 /*!40000 ALTER TABLE `cash` DISABLE KEYS */;
-INSERT INTO `cash` VALUES (40,1,'123',15.00,15.00,'Kabel','2009-08-31 17:18:22'),(69,1,'1',12.00,0.00,'Lankabel','2009-09-01 17:08:33'),(70,1,'2',532.00,532.00,'Computer','2009-09-01 17:08:46'),(71,1,'3',-2.00,530.00,'Kaffee','2009-09-01 17:08:59'),(72,1,'4',-2.00,528.00,'Kekse','2009-09-01 17:09:17'),(73,1,'5',2.32,530.32,'Adapter','2009-09-01 17:09:34'),(74,1,'6',-5.00,525.32,'Kuchen','2009-09-01 17:10:35'),(75,1,'7',-5.00,520.32,'Kuchen','2009-09-01 17:11:04'),(76,1,'8',-2.32,518.00,'Kuchen','2009-09-01 17:18:22');
+INSERT INTO `cash` VALUES (80,1,'1',12.78,12.78,'Lankabel','2009-09-02 00:05:36'),(81,1,'2',-5.53,7.25,'Kuchen','2009-09-02 00:06:32'),(82,1,'3',-12.50,-5.25,'Kuchen Kuchen Kuchen Kuchen Kuchen Kuchen','2009-09-02 00:08:08'),(83,1,'',13.56,8.31,'Lankabel','2009-09-03 00:41:39'),(84,1,'',91.69,100.00,'Zur&uuml;ckgesetzt','2009-09-03 00:42:17'),(85,1,'2',12.30,112.30,'Lankabel','2009-09-04 00:33:25'),(86,1,'4',1123.56,1235.86,'abc','2009-09-04 00:33:46');
 /*!40000 ALTER TABLE `cash` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -319,9 +319,9 @@ DELIMITER ;;
                                      IN _price FLOAT,
                                      IN _description CHAR(150))
 BEGIN
-  DECLARE new_total FLOAT(7,2) DEFAULT 0.00;
+  DECLARE new_total FLOAT(7,2) DEFAULT _price;
 
-  SELECT IFNULL(total, 0) + _price
+  SELECT total + _price
   INTO new_total
   FROM cash
   WHERE cash_id = (SELECT max(cash_id) FROM cash);
@@ -1010,7 +1010,7 @@ BEGIN
       ON js.u_id = u.u_id
       AND js.j_id = j.j_id
       AND js.jst_id = jst.jst_id
-    ORDER BY js.js_id";
+    ORDER BY js.js_id DESC";
 
   SET @q = CONCAT(@q, @lim);
   PREPARE st FROM @q;
@@ -1568,4 +1568,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2009-09-01 20:53:51
+-- Dump completed on 2009-09-04  2:40:00

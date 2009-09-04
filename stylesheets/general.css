@@ -8,7 +8,7 @@ body {
     text-decoration: none;
 }*/
 
-h1, h2, h3, h4, h5, h6, p, form, hr, td, tbody, table, tr {
+h1, h2, h3, h4, h5, h6, p, form, hr, td, tbody, table, tr, ul {
     margin: 0;
     padding: 0;
 }
@@ -32,6 +32,16 @@ a:hover {
 
 a:active {
     color:#000;
+}
+
+li {
+    float:left;
+    list-style-type:none;
+    position:relative;
+}
+
+.ital {
+    font-style: italic;
 }
 
 

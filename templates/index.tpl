@@ -3,7 +3,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
         <link rel="stylesheet" type="text/css" href="stylesheets/general.css" />
         <link rel="stylesheet" type="text/css" href="stylesheets/homepage.css" />
-        <link rel="stylesheet" type="text/css" href="stylesheets/forms.css" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/general_content.css" />
     </head>
     <body>
         <div id="maincenter" align="center">
@@ -11,9 +11,6 @@
                 <div id="head">
                     <div id="logo">
                         <img src="pics/logo.jpg" border="0" height="70"  alt="" />
-                    </div>
-                    <div id="date">
-                        {$stats.cur_date|date_format:"%d.%m.%y"}   
                     </div>
                     <div id="search">
                         {literal}
@@ -28,21 +25,32 @@
                         <input type="button" onclick="show_job()" value="Go"/>
                     </div>
                     <div id="stats">
-                    
+                        <div>                       
+                            Neue Auftr&auml;ge:  <br />
+                            Auftrags&auml;nderungen: <br />
+                            Erbrachte Services: <br />
+                            Kassenbucheintr&auml;ge: <br />
+                        </div>
+                        <div id="values">
+                            {$stats.new_jobs} <br />   
+                            {$stats.status_added} <br /> 
+                            {$stats.services_added} {if $stats.services_added != 0} ({$stats.services_sum|replace:".":"."}&euro;) {/if} <br />
+                            {$stats.cash_added} {if $stats.cash_added != 0} ({$stats.cash_sum|replace:".":"."}&euro;) {/if} <br />
+                        </div>
                     </div>
                 </div>
-                <div id="mid_line"></div>
-                <div id="left_navi" class="content_padding_top grey_back" >
-                    {$left_navi}
+                <div id="navi">
+                     {$left_navi}
                 </div>
-                <div id="content_main" class="content_padding_top grey_back" align="left">
+                <div id="mid_line"></div>
+                <div id="content_main" align="left">
                     <div id="error_message_wrap" align="center">
                         {$error_message}
                     </div>
                     <div id="status_message_wrap" align="center">
                         {$status_message}
                     </div>
-                    <div id="content_wrap">
+                    <div id="content">
                         {$content}
                     </div>
                     <div id="footer" class="grey_back" align="center">
