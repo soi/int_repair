@@ -9,7 +9,7 @@
     <body>
         <div id="main" align="left">
             <div id="image" align="right">
-                <img src="pics/bill_pic.jpg" border="0" alt="no pic"/>
+                <img src="pics/bill_pic.JPG" border="0" alt="no pic"/>
             </div>  
             <div id="address">
                <span class="small3">Matthias Theobald - Sonnemannstra&szlig;e 10 - 97204 H&ouml;chberg</span><br />

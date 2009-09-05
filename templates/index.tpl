@@ -16,7 +16,7 @@
             <div id="main" align="left">
                 <div id="head">
                     <div id="logo">
-                        <img src="pics/logo.jpg" border="0" height="70"  alt="" />
+                        <img src="pics/logo.JPG" border="0" height="70"  alt="" />
                     </div>
                     <div id="search">
                         {literal}

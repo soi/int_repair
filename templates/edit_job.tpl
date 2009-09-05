@@ -8,34 +8,57 @@
 
 <div class="content_part" id="job_general_info">
     <h4>Generelle Informationen</h4>
-    <div id="left">
-        <span class="bold">Beschreibung:</span> <br />
-        <span class="bold">Auftragseingang:</span>    <br />
-        <span class="bold">KV gew&uuml;nscht:</span> <br /> 
-        <span class="bold">Rechnung erstellt:</span> <br />
-        <span class="bold">Bezahlt:</span> <br />
-        <span class="bold">Beended:</span> <br />
-    </div>
-    <div id="right">
-         {$job_info.short_description} <br />
-         {$job_info.date|date_format:"%d.%m.%y %H:%M"} <br />
-         {if $job_info.bid_needed} ja
-         {else}  nein
-         {/if}
-         <br />
-         {if $job_additional_info.bill_created} <img src="pics/accept.png" border="0" height="" width="" alt="" />
-         {else}  <img src="pics/cancel.png" border="0" height="" width="" alt="" />
-         {/if}
-         <br />
-         {if $job_additional_info.paid} <img src="pics/accept.png" border="0" height="" width="" alt="" />
-         {else}  <img src="pics/cancel.png" border="0" height="" width="" alt="" />
-         {/if}
-         <br />
-         {if $job_additional_info.finished} <img src="pics/accept.png" border="0" height="" width="" alt="" />
-         {else}  <img src="pics/cancel.png" border="0" height="" width="" alt="" />
-         {/if}
-         <br />
-    </div>
+    <table class="small_table">
+        <tr>
+            <td id="left"><span class="bold">Beschreibung:</span></td>
+            <td id="right">{$job_info.short_description}</td>
+        </tr> 
+        <tr>
+            <td><span class="bold">Auftragseingang:</span></td>
+            <td>{$job_info.date|date_format:"%d.%m.%y %H:%M"}</td>
+        </tr> 
+        <tr>
+            <td><span class="bold">Auftragsnummer:</span></td>
+            <td>{$job_info.job_id}</td>
+        </tr>
+        <tr>
+            <td><span class="bold">KV gew&uuml;nscht:</span></td>
+            <td>{if $job_info.bid_needed} ja
+                {else} nein
+                {/if}
+            </td>
+        </tr>
+        {if $job_info.bid_needed}
+            <tr>
+                <td><span class="bold">KV erstellt:</span></td>
+                <td>{if $job_additional_info.bid_created} <img src="pics/accept.png" border="0" height="" width="" alt="" />
+                     {else}  <img src="pics/cancel.png" border="0" height="" width="" alt="" />
+                     {/if}
+                </td>
+            </tr>
+        {/if}
+        <tr>
+            <td><span class="bold">Rechnung erstellt:</span></td>
+            <td>{if $job_additional_info.bill_created} <img src="pics/accept.png" border="0" height="" width="" alt="" />
+                 {else}  <img src="pics/cancel.png" border="0" height="" width="" alt="" />
+                 {/if}
+            </td>
+        </tr>
+        <tr>
+            <td><span class="bold">Bezahlt:</span></td>
+            <td>{if $job_additional_info.paid} <img src="pics/accept.png" border="0" height="" width="" alt="" />
+                 {else}  <img src="pics/cancel.png" border="0" height="" width="" alt="" />
+                 {/if}
+            </td>
+        </tr>
+        <tr>
+            <td><span class="bold">Beended:</span></td>
+            <td> {if $job_additional_info.finished} <img src="pics/accept.png" border="0" height="" width="" alt="" />
+                 {else}  <img src="pics/cancel.png" border="0" height="" width="" alt="" />
+                 {/if}
+            </td>
+        </tr>         
+    </table>
 </div>
 
 <div class="content_part" id="job_customer_info">
@@ -70,11 +93,33 @@
     
 </div>
 
-<div class="content_part" id="job_description">
+{literal}
+    <script language="javascript" type="text/javascript">
+        function set_visibility() {
+            document.getElementById('job_description').style.display="none";    
+            document.getElementById('edit_description_button').style.display="none";    
+            document.getElementById('edit_description_field').style.display="block";    
+            document.getElementById('finish_edit_description_button').style.display="block";    
+        }    
+    </script>
+
+{/literal}
+
+
+
+<div class="content_part" id="job_description_wrap">
     <h4>Auftragsdetails</h4>
-    <p>
-        "{$job_info.description}" <br />
-    </p> <br />
+    <div id="job_description">
+        {$job_info.description|nl2br}
+    </div>
+    
+    <span id="edit_description_button" style="color: #2950FF" onclick="set_visibility()"><br />bearbeiten</span>
+    
+    <form action="index.php?site=complete_edit_job_description&job_id={$job_info.job_id}" method="post">
+        <textarea id="edit_description_field" name="description" style="display: none;">{$job_info.description}</textarea> 
+        <input id="finish_edit_description_button" type="submit" style="display: none;" value="bearbeiten"/>
+    </form>    
+    
 </div>
 
 
@@ -153,7 +198,7 @@
     
     <h4>Neuen Service hinzuf&uuml;gen</h4>
     <form action="index.php?site=complete_add_service&job_id={$job_info.job_id}" method="post">
-         <table id="add_service_table">
+         <table id="add_service_table" class="small_table">
             <tr>
                 <td id="left">Service:</td> 
                 <td><select id="service_type" name="type_id" onchange="update_service_price()">

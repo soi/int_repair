@@ -15,12 +15,10 @@
 }
 
 #job_general_info #left {
-    float: left;
     width: 130px;
 }
 
 #job_general_info #right {
-    float: left;
     width: 270px;
 }
 
@@ -43,7 +41,7 @@
 }
 
 #job_description {
-    padding-bottom: 0px;
+    padding-left: 20px;
 }
 
 #job_status #status_table #description{
@@ -55,7 +53,6 @@
 }
 
 #add_service_table td {
-    padding: 0px 2px;
     font-size: 0.9em;
 }
 

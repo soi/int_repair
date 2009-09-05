@@ -12,6 +12,11 @@
     padding: 1px 3px;
 }
 
+.small_table td{
+    padding: 0px 2px;
+    font-size: 0.8em;    
+}
+
 input[type="text"], textarea{
     font-family: sans-serif;
     width: 300px;
@@ -23,6 +28,7 @@ input[type="submit"]{
 
 textarea {
     height: 150px;
+    font-size: 1.0em;
 }
 
 input[type="button"] {

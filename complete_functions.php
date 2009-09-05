@@ -396,6 +396,26 @@
     }
     
     
+    function complete_edit_job_description() {
+        if (valid_request(array(isset($_GET['job_id']), isset($_POST['description'])))) {
+            
+            global $db;
+            global $smarty;  
+            
+            $db->run('edit_job_description('.$_GET['job_id'].', \''.$_POST['description'].'\')');
+            if ($db->error_result) {
+                redirect('edit_job', 'job_id='.$_GET['job_id'], '', array(1));
+                return true;    
+            }
+            else {
+                redirect('edit_job', 'job_id='.$_GET['job_id'], 'edit_job_description');
+                return true;
+            } 
+        }
+        return true;
+    }
+    
+    
     function complete_edit_user_rights() {
         
         if (valid_request(array(isset($_GET['user_id'])))) {

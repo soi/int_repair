@@ -12,8 +12,7 @@
             {if $user.managment_permission} Verwaltung {/if}
         {/if}               
         <br />
-        {if $visitor_info.admin_permission} <a href="index.php?site=edit_user_rights&user_id={$user.user_id}">> Rechte bearbeiten</a> {/if}
-        <br />
+        {if $visitor_info.admin_permission} <a href="index.php?site=edit_user_rights&user_id={$user.user_id}">> Rechte bearbeiten</a> <br />{/if}
         <br />
     {/foreach}
 </div>

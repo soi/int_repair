@@ -26,7 +26,8 @@
                                  'complete_add_service',
                                  'complete_add_status',
                                  'complete_add_job', 
-                                 'complete_edit_job', 
+                                 'complete_edit_job',
+                                 'complete_edit_job_description', 
                                  'job_overview', 
                                  'user_overview');
                             
@@ -194,6 +195,10 @@
 
             case 'complete_edit_user_rights' :
                 complete_edit_user_rights();
+                break;
+                
+             case 'complete_edit_job_description' :
+                complete_edit_job_description();
                 break;
             
             //OVERVIEWS
