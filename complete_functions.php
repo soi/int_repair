@@ -88,7 +88,7 @@
             $errors[] = 61;
 
         if (isset($errors)) {
-            display_errors($errors);
+            redirect('add_customer', '', '', $errors);
             return true;
         }
 
@@ -106,9 +106,9 @@
                              '".$_POST['town']."')";
         $db->run($sql);
         if ($db->error_result)
-             display_errors(1);
+            redirect('add_customer', '', '', array(1));
         else {
-            display_success("add_customer");
+            redirect('customer_overview', '', 'add_customer');
         }
         return true;
     }
@@ -122,7 +122,7 @@
             global $smarty;
             
             if (strlen($_POST['short_description']) > 150) {
-                display_errors(101);
+                redirect('add_job', '', '', array(101));
                 return true;
             }     
             
@@ -136,7 +136,7 @@
             $sql = "get_customer_info(".$_POST['customer_id'].")";
             $db->run($sql);
             if ($db->empty_result) {
-                display_errors(100);
+                redirect('add_job', '', '', array(100));
                 return true;    
             }
             else {
@@ -159,17 +159,16 @@
                                 '".$customer_info['email']."')";
                 $db->run($sql);
                 if ($db->error_result) {
-                    display_errors(1);
+                    redirect('add_job', '', '', array(1));
                     return true;    
                 }
                 else {
-                    display_success("add_job");
-                    $smarty->assign('content', $smarty->fetch("success.tpl"));
+                    redirect('job_overview', '', 'add_job');
+                    return true;
                 }   
             }
-            
-                              
-        }    
+        }  
+        return true;  
     }
     
     
@@ -185,7 +184,7 @@
             global $smarty;
             
             if (!preg_match('/^[0-9]+((\.{1}|\,{1})[0-9]+)?$/', $_POST['price'])) {
-                display_errors(203);
+                redirect('edit_job', 'job_id='.$_GET['job_id'], '', array(203));
                 return true;    
             }
 
@@ -193,7 +192,7 @@
             
             if (strlen($_POST['custom_type']) > 0) {
                 if (strlen($_POST['custom_type']) > 100) {
-                    display_errors(200);
+                    redirect('edit_job', 'job_id='.$_GET['job_id'], '', array(200));
                     return true;
                 }
                 
@@ -205,7 +204,7 @@
                                                ".$_POST['amount'].")";
                 $db->run($sql);
                 if ($db->error_result) {
-                    display_errors(1);
+                    redirect('edit_job', 'job_id='.$_GET['job_id'], '', array(1));
                     return true;    
                 }
                 else {
@@ -215,7 +214,7 @@
             }
             else {
                 if ($_POST['type_id'] == 0) {
-                    display_errors(201);
+                    redirect('edit_job', 'job_id='.$_GET['job_id'], '', array(201));
                     return true;    
                 }
                 
@@ -250,7 +249,7 @@
             global $smarty;
             
             if ($_POST['type_id'] == 0) {
-                display_errors(202);
+                redirect('edit_job', 'job_id='.$_GET['job_id'], '', array(202));
                 return true;
             }
 
@@ -283,7 +282,7 @@
             global $smarty;
 
             if ($_POST['password'] != $_POST['password_retype']) {
-                display_errors(50);
+                redirect('add_user', '', '', array(50));
                 return true;
             }
 
@@ -316,9 +315,9 @@
                              '".md5($_POST['password'])."')";
             $db->run($sql);
             if ($db->error_result)
-                display_errors(1);
+                redirect('user_overview', '', '', array(1));
             else {
-                display_success("add_user");
+                redirect('user_overview', '', 'add_user');
             }
         }
         return true;
@@ -370,7 +369,7 @@
             $errors[] = 61;
 
         if (isset($errors)) {
-            display_errors($errors);
+            redirect('edit_customer', 'customer_id='.$_GET['customer_id'], '', $errors);
             return true;
         }
 
@@ -389,9 +388,9 @@
                               '".$_POST['town']."')";
         $db->run($sql);
         if ($db->error_result)
-             display_errors(1);
+             redirect('customer_overview', '', '', array(1));
         else {
-            display_success("edit_customer");
+             redirect('customer_info', 'customer_id='.$_GET['customer_id'], 'edit_customer');
         }
         return true;    
     }
@@ -430,9 +429,9 @@
                                      ".$managment_perm.")";
             $db->run($sql);
             if ($db->error_result)
-                display_errors(1);
+                redirect('user_overview', '', '', array(1));
             else {
-                display_success("edit_user_rights");
+                redirect('user_overview', '', 'edit_user_rights');
             }    
         }
         return true;
