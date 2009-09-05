@@ -1,0 +1,11 @@
+#date_start, #date_limit {
+    width: 65px;
+}
+
+#price, #record, #reset {
+    width: 70px;
+}
+
+#description {
+    width: 200px;
+}

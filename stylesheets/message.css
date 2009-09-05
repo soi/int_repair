@@ -1,0 +1,22 @@
+.message_wrap {
+    padding: 7px 20px;
+    margin: 10px 200px;
+}
+
+.message_hl {
+    
+}
+
+.message {
+    
+}
+
+#error {
+    background-color: #FF8400;
+    border: 2px solid #FF2A00;
+}
+
+#success {
+    background-color: #FFF081;
+    border: 2px solid #FF8C00;    
+}

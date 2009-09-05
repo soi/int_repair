@@ -1,0 +1,82 @@
+.big_table {
+    margin: 10px 0px;
+    font-size: 1.05em;
+}
+
+.big_table th {
+    text-align: left;
+    font-size: 0.9em
+}
+
+.big_table td, .big_table th {
+    padding: 1px 3px;
+}
+
+input[type="text"], textarea{
+    font-family: sans-serif;
+    width: 300px;
+}
+
+input[type="submit"]{
+    margin-top: 10px;
+}
+
+textarea {
+    height: 150px;
+}
+
+input[type="button"] {
+    font-size: 1.05em;
+}
+
+h3 {
+    font-size: 1.35em;
+}
+
+h4 {
+    padding-top: 5px;
+    font-size: 1.1em;  
+    margin-bottom: 5px;
+}
+
+h5 {
+    padding-top: 5px;
+    font-size: 0.95em;
+    
+}
+
+.content_part {
+    background-color: #F0F0F0;
+    padding: 10px 0px;
+    border: 1px solid #C2C2C2;
+    float: left;
+    padding: 5px 40px 15px;
+    margin-bottom: 10px;
+    width: 900px;
+}
+
+.content_headline {
+    background-color: #C9E2FF;
+    border: 1px solid #C2C2C2;
+    float: left;
+    padding: 7px 40px;
+    margin-bottom: 7px;
+    width: 900px; 
+}
+
+.content_part > a, .previous > a, .next > a {
+    color: #2950FF;        
+}
+
+.previous {
+    float: left;
+    width: 400px;
+    text-align: left;
+}
+
+.next {
+    float: right;
+    width: 400px;
+    text-align: right;
+}
+                                      

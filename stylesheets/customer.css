@@ -1,0 +1,16 @@
+#add_customer input, #edit_customer input{
+    width: 160px;
+}
+
+#add_customer input[name="street"], #edit_customer input[name="street"] {
+    width: 200px;
+}
+
+#add_customer input[name="plz"], #edit_customer input[name="plz"] {
+    width: 100px;
+}
+
+#customer_info {
+    padding-top: 10px;
+}
+

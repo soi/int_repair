@@ -1,0 +1,63 @@
+#generate_bill {
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+
+#job_general_info {
+    width: 400px;
+    height: 208px;
+    float: left;
+}
+
+#job_customer_info {
+    width: 400px;
+    float: right;
+}
+
+#job_general_info #left {
+    float: left;
+    width: 130px;
+}
+
+#job_general_info #right {
+    float: left;
+    width: 270px;
+}
+
+#job_customer_info #left {
+    float: left;
+    width: 65px;
+}
+
+#job_customer_info #right {
+    float: left;
+    width: 330px;
+}
+
+#job_customer_info a {
+    color: #2950FF;
+}
+
+#job_customer_info #customer_today {
+    float: left;
+}
+
+#job_description {
+    padding-bottom: 0px;
+}
+
+#job_status #status_table #description{
+    width: 240px;    
+}
+
+#job_services #services_table #description{
+    width: 300px;
+}
+
+#add_service_table td {
+    padding: 0px 2px;
+    font-size: 0.9em;
+}
+
+
+
