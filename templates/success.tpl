@@ -1,5 +1,9 @@
-<h4>{$success_info.action} erfolgreich</h4>
-{$success_info.message}    <br />
-{if $success_info.id}
-    id:&nbsp;{$success_info.id}
-{/if}
+<div id="success" class="message_wrap">
+    <!--  <div class="message_hl">
+        <span class="bold">{$success_info.action} erfolgreich</span>
+    </div> -->
+    <div class="message">
+        {$success_info.message}
+    </div>
+</div>
+

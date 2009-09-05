@@ -1,7 +1,7 @@
 body {
     font-family: Sans-Serif;
     line-height: 1.35em;
-    font-size: 13.34px;
+    font-size: 13.4px;
 }
 
 /*a {
@@ -42,6 +42,10 @@ li {
 
 .ital {
     font-style: italic;
+}
+
+.bold {
+    font-weight: bold;   
 }
 
 

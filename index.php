@@ -19,7 +19,7 @@
                                  'complete_add_cash', 
                                  'complete_reset_cash', 
                                  'latest_jobs', 
-                                 'latest_changes');                                 
+                                 'jobs_latest_changes');                                 
         
         $tech_sites      = array('add_job', 
                                  'edit_job', 
@@ -215,11 +215,11 @@
                 display_user_overview();
                 break;
                 
-            case 'latest_jobs'
+            case 'latest_jobs' :
                 display_latest_jobs();
                 break;
                 
-            case 'latest_changes'
+            case 'jobs_latest_changes' :
                 display_jobs_latest_changes();
                 break;
             

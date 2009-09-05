@@ -4,6 +4,12 @@
         <link rel="stylesheet" type="text/css" href="stylesheets/general.css" />
         <link rel="stylesheet" type="text/css" href="stylesheets/homepage.css" />
         <link rel="stylesheet" type="text/css" href="stylesheets/general_content.css" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/customer.css" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/user.css" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/edit_job.css" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/message.css" />
+        <link rel="stylesheet" type="text/css" href="stylesheets/cash.css" />
+        <script src="javascript/change_rights.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="maincenter" align="center">
@@ -25,6 +31,7 @@
                         <input type="button" onclick="show_job()" value="Go"/>
                     </div>
                     <div id="stats">
+                        <span class="bold">Statistik f&uuml;r heute: &nbsp;&nbsp;&nbsp;{$stats.cur_date|date_format:"%d.%m.%y"}</span><br />
                         <div>                       
                             Neue Auftr&auml;ge:  <br />
                             Auftrags&auml;nderungen: <br />
@@ -44,10 +51,10 @@
                 </div>
                 <!-- <div id="mid_line"></div>  -->
                 <div id="content_main" align="left">
-                    <div id="error_message_wrap" align="center">
+                    <div align="center">
                         {$error_message}
                     </div>
-                    <div id="status_message_wrap" align="center">
+                    <div align="center">
                         {$status_message}
                     </div>
                     <div id="content">

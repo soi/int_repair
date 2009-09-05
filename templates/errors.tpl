@@ -1,5 +1,11 @@
-<h4>Ein Fehler ist aufgetreten</h4>
-{foreach from=$error_messages item=one_error}
-    {$one_error}&nbsp;<br />
-{/foreach}
-<a href="javascript:history.back();">zurück</a>
+<div id="error" class="message_wrap">
+    <div class="message_hl">
+        <span class="bold">Ein Fehler ist aufgetreten</span>
+    </div>
+    <div class="message">
+        {foreach from=$error_messages item=one_error}
+            {$one_error}&nbsp;<br />
+        {/foreach}
+    </div>
+</div>
+

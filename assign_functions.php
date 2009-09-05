@@ -105,7 +105,7 @@
             return true;
         }
         $count = $db->get_result_row();
-        $smarty->assign('jobs_latest_jobs_info', array('start' => $offset, 'limit' =>  $length, 'count' => $count['count']);
+        $smarty->assign('latest_jobs_info', array('start' => $offset, 'limit' =>  $length, 'count' => $count['count']));
         return true;
     }
     
@@ -137,7 +137,7 @@
             return true;
         }
         $count = $db->get_result_row();
-        $smarty->assign('jobs_latest_changes_info', array('start' => $offset, 'limit' =>  $kength, 'count' => $count['count']);
+        $smarty->assign('jobs_latest_changes_info', array('start' => $offset, 'limit' =>  $length, 'count' => $count['count']));
         return true;
     }
 

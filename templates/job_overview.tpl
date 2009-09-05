@@ -14,6 +14,7 @@
         <br />
         <br />
     {/foreach}
+    <a href="index.php?site=latest_jobs">..mehr</a>
 </div>
 
 <div class="content_part">
@@ -28,4 +29,5 @@
         <a href="index.php?site=edit_job&job_id={$change.job_id}">> Details</a>
         <br /><br />
     {/foreach}
+    <a href="index.php?site=jobs_latest_changes">..mehr</a>
 </div>

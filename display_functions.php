@@ -130,15 +130,15 @@
         
         global $smarty;   
         
-        if (isset($_GET['start'] && $_GET['limit'])) {
+        if (isset($_GET['start']) && isset($_GET['limit'])) {
             assign_jobs_latest_changes($_GET['start'], $_GET['limit']);
             assign_jobs_latest_changes_info($_GET['start'], $_GET['limit']); 
         } 
         else {
-            assign_jobs_latest_changes(0, 20);
-            assign_jobs_latest_changes_info(0, 20);
+            assign_jobs_latest_changes(0, 10);
+            assign_jobs_latest_changes_info(0, 10);
         }           
-        $smarty->assign('content', $smarty->fetch("latest_changes.tpl"));        
+        $smarty->assign('content', $smarty->fetch("jobs_latest_changes.tpl"));        
         return true;
      }
      
@@ -147,13 +147,13 @@
 
         global $smarty;
 
-        if (isset($_GET['start'] && $_GET['limit'])) {
-            assign_jobs_latest_changes($_GET['start'], $_GET['limit']);
-            assign_jobs_latest_changes_info($_GET['start'], $_GET['limit']);
+        if (isset($_GET['start']) && isset($_GET['limit'])) {
+            assign_latest_jobs($_GET['start'], $_GET['limit']);
+            assign_latest_jobs_info($_GET['start'], $_GET['limit']);
         }
         else {
-            assign_jobs_latest_changes(0, 20);
-            assign_jobs_latest_changes_info(0, 20);
+            assign_latest_jobs(0, 10);
+            assign_latest_jobs_info(0, 10);
         }
         $smarty->assign('content', $smarty->fetch("latest_jobs.tpl"));
         return true;
@@ -210,7 +210,7 @@
         
         assign_success_info($success_action, $related_id);
         if ($short_message) {
-            $smarty->assign('status_message', $smarty->fetch("success_message.tpl"));    
+            $smarty->assign('status_message', $smarty->fetch("success.tpl"));    
         }
         else {
             $smarty->assign('content', $smarty->fetch("success.tpl"));    

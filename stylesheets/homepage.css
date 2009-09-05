@@ -39,7 +39,8 @@
 }
 
 #search input[type="button"] {  
-    vertical-align: top;    
+    vertical-align: baseline;
+    font-size: 0.9em;    
 }
 
 #search input[type="text"] {
