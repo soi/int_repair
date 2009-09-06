@@ -1,1 +1,0 @@
-<img src="pics/head.jpg" border="0" />
