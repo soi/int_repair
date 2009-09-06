@@ -1,6 +1,13 @@
-#generate_bill {
+.one_line_content {
     padding-bottom: 5px;
-    font-weight: bold;
+}
+
+.one_line_content a {
+    font-weight: bold;    
+}
+
+#bid_text {
+    width: 600px;
 }
 
 #job_general_info {
@@ -41,7 +48,7 @@
 }
 
 #job_description {
-    padding-left: 20px;
+    padding: 5px 20px 10px;
 }
 
 #job_status #status_table #description{

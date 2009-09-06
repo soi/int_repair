@@ -46,8 +46,41 @@
                         </div>
                     </div>
                 </div>
+                
+                {literal}
+                    <script language="javascript" type="text/javascript">
+                        function active_add(button) {
+                            document.getElementById(button).src = "pics/addblau.png";
+                        }                          
+                        function inactive_add(button) {
+                            document.getElementById(button).src = "pics/add.png";
+                        }  
+                    </script>
+                {/literal}
+                
+                
+                
                 <div id="navi">
-                     {$left_navi}
+                     <ul>
+                        <li>
+                            <a href="index.php?site=job_overview">Auftr&auml;ge</a>
+                            <a class="add" href="index.php?site=add_job"><img id="add1" src="pics/add.png" border="0" height="18"  alt="hinzu" onmouseover="active_add('add1')" onmouseout="inactive_add('add1')"/></a>
+                        </li>
+                        <li>
+                            <a href="index.php?site=customer_overview">Kunden</a>
+                            <a class="add" href="index.php?site=add_customer"><img id="add2" src="pics/add.png" border="0" height="18" width="" alt="hinzu" onmouseover="active_add('add2')" onmouseout="inactive_add('add2')"/></a>
+                        </li>
+                        <li>
+                            <a href="index.php?site=user_overview">Mitarbeiter</a>
+                            <a class="add" href="index.php?site=add_user"><img id="add3" src="pics/add.png" border="0" height="18" width="" alt="hinzu" onmouseover="active_add('add3')" onmouseout="inactive_add('add3')"/></a>
+                        </li>
+                        <li>
+                            <a href="index.php?site=cash_overview">Kasse</a>
+                        </li>
+                        <li>
+                            <a href="index.php?site=complete_logout">Logout</a>
+                        </li>
+                    </ul>
                 </div>
                 <!-- <div id="mid_line"></div>  -->
                 <div id="content_main" align="left">
@@ -61,7 +94,7 @@
                         {$content}
                     </div>
                     <div id="footer" class="grey_back" align="center">
-                        {$footer}
+ 
                     </div>
                 </div>
             </div>

@@ -34,7 +34,6 @@
                                  'user_overview');
                             
         $managment_sites = array('add_customer',
-                                 'create_bill',
                                  'cash_overview',
                                  'complete_add_customer',
                                  'complete_edit_customer',
@@ -42,6 +41,7 @@
                                  'edit_customer',
                                  'reports_overview',
                                  'user_overview', 
+                                 'generate_bid',
                                  'generate_bill', 
                                  'generate_cash_print');
                                                            
@@ -253,6 +253,11 @@
                 break;
                 
           // GENERATE
+          
+            case 'generate_bid' :
+                display_bid();
+                $smarty->display('bid.tpl');
+                return true;
 
             case 'generate_bill' :
                 display_bill();
@@ -277,11 +282,6 @@
         $smarty->display('login.tpl');
         return true;    
     }
-    
-    
-    //assigning page parts that are always visible
-    $smarty->assign('left_navi', $smarty->fetch("left_navi.tpl"));
-    $smarty->assign('footer', $smarty->fetch("footer.tpl"));
     
     $smarty->display('index.tpl');
     unset ($smarty);

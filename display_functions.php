@@ -189,6 +189,17 @@
            
     }
     
+    function display_bid() {  
+        if (valid_request(array(isset($_GET['job_id']), isset($_POST['bid_text'])))) {
+
+            global $smarty;
+            assign_bill_info($_GET['job_id']);
+            $smarty->assign('bid_text', $_POST['bid_text']);
+        }
+        return true;
+
+    }
+    
     function display_cash_print() {
 
         if (valid_request(array(isset($_GET['date_start']), isset($_GET['date_limit'])))) {

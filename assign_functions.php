@@ -31,7 +31,7 @@
     
     
     function assign_bill_info ($job_id) {
-        call_and_assign("get_bill_info(".$job_id.")", "bill_info");
+        call_and_assign("get_bill_bid_info(".$job_id.")", "bill_bid_info");
         return true;
     }   
      

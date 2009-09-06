@@ -2,8 +2,41 @@
     <h3>Autragsdetails</h3>
 </div>
 
-<div class="content_part" id="generate_bill">
+<div class="content_part one_line_content" >
     <a href="index.php?site=generate_bill&job_id={$job_info.job_id}" target="_blank">Rechnung erzeugen</a>
+</div>
+
+{literal}
+    <script language="javascript" type="text/javascript">
+        function set_bid_visibility() {
+            document.getElementById('bid_link').style.display="none";
+            document.getElementById('bid_headline').style.display="block";
+            document.getElementById('bid_text').style.display="block";
+            document.getElementById('finish_bid_button').style.display="inline";
+            document.getElementById('cancel_bid_button').style.display="inline";
+            document.getElementById('generate_bid').style.padding="5px 40px 15px";
+        }
+
+        function set_normal_bid_visibility() {
+            document.getElementById('bid_link').style.display="block";
+            document.getElementById('bid_headline').style.display="none";
+            document.getElementById('bid_text').style.display="none";
+            document.getElementById('finish_bid_button').style.display="none";
+            document.getElementById('cancel_bid_button').style.display="none";
+            document.getElementById('generate_bid').style.padding="5px 40px";
+        }
+    </script>
+{/literal}
+
+<div id="generate_bid" class="content_part one_line_content">
+    <a id="bid_link" href="#" onclick="set_bid_visibility(); return false;">KV erzeugen</a>
+
+        <h4 id="bid_headline" style="display: none;">KV Beschreibung</h4>
+        <form action="index.php?site=generate_bid&job_id={$job_info.job_id}" method="post" target="_blank">
+            <textarea id="bid_text" name="bid_text" style="display: none;"></textarea>
+            <input id="finish_bid_button" type="submit" style="display: none;" value="KV anzeigen"/>
+            <input id="cancel_bid_button" type="button" style="display: none;" value="abbrechen" onclick="set_normal_bid_visibility()"/>
+        </form>
 </div>
 
 <div class="content_part" id="job_general_info">
@@ -93,6 +126,9 @@
     
 </div>
 
+
+
+
 {literal}
     <script language="javascript" type="text/javascript">
         function set_edit_visibility() {
@@ -121,10 +157,8 @@
     <div id="job_description">
         {$job_info.description|nl2br}
     </div>
+    <a href="#" id="edit_description_button" onclick="set_edit_visibility(); return false;">bearbeiten</a>
     
-    <div style="text-align: right;">
-        <a href="#" id="edit_description_button" onclick="set_edit_visibility(); return false;">bearbeiten</a>
-    </div>
     
     
     <form action="index.php?site=complete_edit_job_description&job_id={$job_info.job_id}" method="post">
@@ -242,6 +276,9 @@
     </form>
     <br />
 </div>
+
+
+
 
 
 

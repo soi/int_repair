@@ -5,27 +5,27 @@
     <head>
         <title>Rechnung {$bill_bid_info.job_id}</title>
         <link rel="stylesheet" type="text/css" href="stylesheets/bill_bid.css" />
-    </head>    
+    </head>
     <body>
         <div id="main" align="left">
             <div id="image" align="right">
                 <img src="pics/bill_pic.JPG" border="0" alt="no pic"/>
-            </div>  
+            </div>
             <div id="address">
                <span class="small3">Matthias Theobald - Sonnemannstra&szlig;e 10 - 97204 H&ouml;chberg</span><br />
                {$bill_bid_info.form_of_address} <br />
                {$bill_bid_info.title_addition} {$bill_bid_info.first_name} {$bill_bid_info.last_name} <br />
                {$bill_bid_info.street} <br /> <br />
-               {$bill_bid_info.plz} {$bill_bid_info.town}                
+               {$bill_bid_info.plz} {$bill_bid_info.town}
             </div>
             <div id="sub_image" align="right">
                 EDV-Service und Dienstleistung <br />
                 <span class="small2">Steuer Nr.: 257/280/41067</span>
-            </div>  
+            </div>
             <div id="date_numbers" class="space_right">
                 H&ouml;chberg, {$bill_bid_info.date|date_format:"%d.%m.%Y"}<br /><br />
                 <div id="numbers_desc">
-                    Rechungsnr.: <br />
+                    Auftragsnr.: <br />
                     Kundennr.: <br />
                 </div>
                 <div id="numbers">
@@ -34,33 +34,18 @@
                 </div>
             </div>
             <div id="main_headline" class="big2">
-                Rechnung
+                Kostenvoranschlag
+            </div>            
+            <div id="bid_text" class="space_right">
+                {$bid_text|nl2br}
             </div>
-            <div id="services_wrap" class="space_right">
-                <table id="service_table" border="1">
-                    <tr id="th_tr" >
-                        <td id="first_coloumn" class="service_th big1">Bezeichnung</td>
-                        <td class="service_th big1">Menge/Stunden</td>
-                        <td class="service_th big1">Einzelpreis</th>
-                        <td class="service_th big1">Gesamtpreis</th>    
-                    </tr>
-                    {foreach from=$job_services item=service}
-                        <tr>
-                            <td class="service_td">{$service.service_name}</td>
-                            <td class="service_td amount_cell">{$service.amount}</td>
-                            <td class="service_td price_cell">{$service.service_price|replace:".":","}&nbsp;&euro;</td>
-                            <td class="service_td price_cell">{$service.total|replace:".":","}&nbsp;&euro;</td>
-                        </tr>
-                    {/foreach}                    
-                </table>        
+            <div id="thanks_bid">
+                
+                Mit freundlichen Gr&uuml;&szlig;en
+                <br /><br /><br /><br /><br /> <br />
+                Matthias Theobald
             </div>
-            <div id="total" class="space_right big1">
-                Summe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$bill_bid_info.all_total|replace:".":","}&nbsp;&euro;
-            </div>
-            <div id="thanks">
-                Wir danken f&uuml;r ihren Auftrag.
-            </div>
-            <div id="footer_wrap" class="small1">
+            <div id="footer_wrap_bid" class="small1">
                 <div class="footer">
                     Matthias Theobald <br />
                     Sonnemannstraﬂe 10<br />
