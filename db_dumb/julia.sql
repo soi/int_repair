@@ -41,7 +41,7 @@ CREATE TABLE `cash` (
   PRIMARY KEY (`cash_id`),
   KEY `FK_cash_1` (`u_id`),
   CONSTRAINT `FK_cash_1` FOREIGN KEY (`u_id`) REFERENCES `user` (`u_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,7 +50,7 @@ CREATE TABLE `cash` (
 
 LOCK TABLES `cash` WRITE;
 /*!40000 ALTER TABLE `cash` DISABLE KEYS */;
-INSERT INTO `cash` VALUES (80,1,'1',12.78,12.78,'Lankabel','2009-09-02 00:05:36'),(81,1,'2',-5.53,7.25,'Kuchen','2009-09-02 00:06:32'),(82,1,'3',-12.50,-5.25,'Kuchen Kuchen Kuchen Kuchen Kuchen Kuchen','2009-09-02 00:08:08'),(83,1,'',13.56,8.31,'Lankabel','2009-09-03 00:41:39'),(84,1,'',91.69,100.00,'Zur&uuml;ckgesetzt','2009-09-03 00:42:17'),(85,1,'2',12.30,112.30,'Lankabel','2009-09-04 00:33:25'),(86,1,'4',1123.56,1235.86,'abc','2009-09-04 00:33:46');
+INSERT INTO `cash` VALUES (80,1,'1',12.78,12.78,'Lankabel','2009-09-02 00:05:36'),(81,1,'2',-5.53,7.25,'Kuchen','2009-09-02 00:06:32'),(82,1,'3',-12.50,-5.25,'Kuchen Kuchen Kuchen Kuchen Kuchen Kuchen','2009-09-02 00:08:08'),(83,1,'',13.56,8.31,'Lankabel','2009-09-03 00:41:39'),(84,1,'',91.69,100.00,'Zur&uuml;ckgesetzt','2009-09-03 00:42:17'),(85,1,'2',12.30,112.30,'Lankabel','2009-09-04 00:33:25'),(86,1,'4',1123.56,1235.86,'abc','2009-09-04 00:33:46'),(87,1,'Kassenbeleg',165.00,1400.86,'Barzahlung Rechnung: 15','2009-09-05 04:25:13'),(88,1,'12',12.57,1413.43,'Lankabel','2009-09-05 06:12:07'),(89,1,'',-1313.43,100.00,'Zur&uuml;ckgesetzt','2009-09-05 06:12:25'),(90,1,'',0.00,100.00,'Zur&uuml;ckgesetzt','2009-09-05 22:31:14'),(91,1,'',-90.00,10.00,'Zur&uuml;ckgesetzt','2009-09-05 22:31:21');
 /*!40000 ALTER TABLE `cash` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +116,7 @@ CREATE TABLE `job` (
   `c_plz` varchar(10) NOT NULL,
   `c_title_addition` varchar(20) NOT NULL,
   PRIMARY KEY (`j_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +125,7 @@ CREATE TABLE `job` (
 
 LOCK TABLES `job` WRITE;
 /*!40000 ALTER TABLE `job` DISABLE KEYS */;
-INSERT INTO `job` VALUES (1,'TV kaputt','TV broken','2009-08-27 20:20:01',0,'Herr',13648,'Felix','Stiehler','','','','','Hellstraße 3','Berlin','','12345','Dr.'),(2,'PC kaputt','PC broken','2009-08-27 22:20:01',0,'',12543,'Felix','Stiehler','','','','','Strasse','','','',''),(3,'345','Graka broken','2009-08-27 18:20:01',0,'',2,'Felix2','Stiehler1','tel_18','tel_29','fax10','','Strasse5','Berlin7','mymail11','154236',''),(9,'Graka im Eimer','lang','2009-08-28 03:02:57',0,'',1,'Felix','Stiehler','','','','','Strasse','','','',''),(12,'Server Farm Aufbau Hohenschönhausen','Lorem ipsum...','2009-08-30 01:59:45',0,'',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692',''),(14,'Server Reperatur','Festplatte muss ausgetauscht werden','2009-08-31 21:40:32',0,'Frau',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692',''),(15,'Computer reparieren','Computer','2009-09-04 16:21:07',1,'Frau',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692','');
+INSERT INTO `job` VALUES (1,'TV kaputt','TV broken','2009-08-27 20:20:01',0,'Herr',13648,'Felix','Stiehler','','','','','Hellstraße 3','Berlin','','12345','Dr.'),(2,'PC kaputt','PC broken','2009-08-27 22:20:01',0,'',12543,'Felix','Stiehler','','','','','Strasse','','','',''),(12,'Server Farm Aufbau Hohenschönhausen','Lorem ipsum...','2009-08-30 01:59:45',0,'',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692',''),(14,'Server Reperatur','Festplatte muss ausgetauscht werden','2009-08-31 21:40:32',0,'Frau',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692',''),(15,'Computer reparieren','Computer','2009-09-04 16:21:07',1,'Frau',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692',''),(16,'Computer aufbauen','Aufbau','2009-09-04 22:43:07',1,'Frau',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692',''),(17,'Server reparieren','lalala','2009-09-05 05:39:44',0,'Frau',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692',''),(18,'Test','PC aufbau mit hjgbezruijgberjlhlzb\r\nsd\r\nsgwrgbeb\r\nerhbrtnr5z rtn 5t gtn z5tn tntz\r\ntznzt','2009-09-05 21:18:41',0,'Frau',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692','');
 /*!40000 ALTER TABLE `job` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +152,7 @@ CREATE TABLE `job_service` (
   CONSTRAINT `FK_job_service_1` FOREIGN KEY (`jsvt_id`) REFERENCES `job_service_type` (`jsvt_id`),
   CONSTRAINT `FK_job_service_2` FOREIGN KEY (`u_id`) REFERENCES `user` (`u_id`),
   CONSTRAINT `FK_job_service_3` FOREIGN KEY (`j_id`) REFERENCES `job` (`j_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,7 +161,7 @@ CREATE TABLE `job_service` (
 
 LOCK TABLES `job_service` WRITE;
 /*!40000 ALTER TABLE `job_service` DISABLE KEYS */;
-INSERT INTO `job_service` VALUES (1,1,1,'2009-08-27 20:20:01','tolle montage',13.56,1,1),(2,2,1,'2009-08-27 23:20:01','gemacht',12.34,1,1),(16,2,1,'2009-08-28 23:43:33','',20.00,1,4),(19,12,1,'2009-08-31 21:44:52','',15.00,14,1),(20,1,1,'2009-09-01 00:29:38','',100.62,2,3);
+INSERT INTO `job_service` VALUES (1,1,1,'2009-08-27 20:20:01','tolle montage',13.56,1,1),(2,2,1,'2009-08-27 23:20:01','gemacht',12.34,1,1),(16,2,1,'2009-08-28 23:43:33','',20.00,1,4),(19,12,1,'2009-08-31 21:44:52','',15.00,14,1),(20,1,1,'2009-09-01 00:29:38','',100.62,2,3),(21,12,1,'2009-09-05 03:17:05','lalala',15.00,16,1),(22,14,1,'2009-09-05 03:51:13','',150.00,16,1),(23,12,1,'2009-09-05 04:17:37','',15.00,15,1),(24,14,1,'2009-09-05 04:24:54','',150.00,15,1),(25,12,1,'2009-09-05 22:23:23','',15.00,18,1),(26,3,1,'2009-09-05 22:27:08','',15.30,18,1),(27,13,1,'2009-09-05 22:27:12','',5.89,18,1);
 /*!40000 ALTER TABLE `job_service` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +177,7 @@ CREATE TABLE `job_service_type` (
   `name` char(100) NOT NULL,
   `price` float(7,2) NOT NULL,
   PRIMARY KEY (`jsvt_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,7 +186,7 @@ CREATE TABLE `job_service_type` (
 
 LOCK TABLES `job_service_type` WRITE;
 /*!40000 ALTER TABLE `job_service_type` DISABLE KEYS */;
-INSERT INTO `job_service_type` VALUES (1,'Montage PC',10.00),(2,'PC Mainboardtausch',20.00),(3,'PC Lüfterinstallation',15.30),(11,'Montage Server',56.99),(12,'Fehlersuche',15.00),(13,'PC RAM Tausch',5.89);
+INSERT INTO `job_service_type` VALUES (1,'Montage PC',10.00),(2,'PC Mainboardtausch',20.00),(3,'PC Lüfterinstallation',15.30),(11,'Montage Server',56.99),(12,'Fehlersuche',15.00),(13,'PC RAM Tausch',5.89),(14,'Homepage Design',150.00);
 /*!40000 ALTER TABLE `job_service_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -212,7 +212,7 @@ CREATE TABLE `job_status` (
   CONSTRAINT `FK_job_status_1` FOREIGN KEY (`jst_id`) REFERENCES `job_status_type` (`jst_id`),
   CONSTRAINT `FK_job_status_2` FOREIGN KEY (`j_id`) REFERENCES `job` (`j_id`) ON DELETE CASCADE,
   CONSTRAINT `FK_job_status_3` FOREIGN KEY (`u_id`) REFERENCES `user` (`u_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,7 +221,7 @@ CREATE TABLE `job_status` (
 
 LOCK TABLES `job_status` WRITE;
 /*!40000 ALTER TABLE `job_status` DISABLE KEYS */;
-INSERT INTO `job_status` VALUES (4,1,1,1,'2005-11-30 12:00:00','111'),(5,2,1,1,'2005-11-30 12:45:00','211'),(6,4,2,1,'2005-11-30 12:50:00','121'),(7,1,2,2,'2005-11-30 12:12:00','122'),(20,3,1,1,'2009-08-29 03:37:43','erstellt'),(21,6,1,1,'2009-08-29 22:48:03',''),(24,8,12,1,'2009-08-30 01:59:45',''),(25,1,12,1,'2009-08-30 02:14:57','Gerät erhalten'),(26,3,12,1,'2009-08-30 02:15:26','KV erstellt: 250€'),(27,6,2,1,'2009-08-30 02:20:04',''),(28,9,1,1,'2009-08-30 17:28:18',''),(29,11,1,1,'2009-08-30 17:57:55',''),(31,8,14,1,'2009-08-31 21:40:32',''),(32,12,2,1,'2009-09-01 01:28:06',''),(33,9,14,1,'2009-09-01 02:19:18',''),(34,10,14,1,'2009-09-01 02:26:36',''),(35,8,15,1,'2009-09-04 16:21:07',''),(36,3,14,1,'2009-09-04 17:25:51','');
+INSERT INTO `job_status` VALUES (4,1,1,1,'2005-11-30 12:00:00','111'),(5,2,1,1,'2005-11-30 12:45:00','211'),(6,4,2,1,'2005-11-30 12:50:00','121'),(7,1,2,2,'2005-11-30 12:12:00','122'),(20,3,1,1,'2009-08-29 03:37:43','erstellt'),(21,6,1,1,'2009-08-29 22:48:03',''),(24,8,12,1,'2009-08-30 01:59:45',''),(25,1,12,1,'2009-08-30 02:14:57','Gerät erhalten'),(26,3,12,1,'2009-08-30 02:15:26','KV erstellt: 250€'),(27,6,2,1,'2009-08-30 02:20:04',''),(28,9,1,1,'2009-08-30 17:28:18',''),(29,11,1,1,'2009-08-30 17:57:55',''),(31,8,14,1,'2009-08-31 21:40:32',''),(32,12,2,1,'2009-09-01 01:28:06',''),(33,9,14,1,'2009-09-01 02:19:18',''),(34,10,14,1,'2009-09-01 02:26:36',''),(35,8,15,1,'2009-09-04 16:21:07',''),(36,3,14,1,'2009-09-04 17:25:51',''),(61,12,15,1,'2009-09-05 04:25:13',''),(62,8,17,1,'2009-09-05 05:39:44',''),(63,3,17,1,'2009-09-05 06:17:42',''),(64,9,17,1,'2009-09-05 06:18:24',''),(65,13,17,1,'2009-09-05 06:19:01',''),(66,4,17,1,'2009-09-05 06:20:19',''),(67,11,17,1,'2009-09-05 06:21:44',''),(68,12,17,1,'2009-09-05 06:22:20',''),(69,7,17,1,'2009-09-05 06:22:30',''),(70,6,17,1,'2009-09-05 06:22:41',''),(71,10,17,1,'2009-09-05 06:23:12',''),(73,8,18,1,'2009-09-05 21:18:41',''),(74,9,18,1,'2009-09-05 21:25:20',''),(75,3,15,1,'2009-09-05 21:30:35',''),(76,10,18,1,'2009-09-05 22:22:46',''),(77,11,18,1,'2009-09-06 04:28:57','');
 /*!40000 ALTER TABLE `job_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +265,7 @@ CREATE TABLE `user` (
   `tech_permission` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `managment_permission` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`u_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -274,7 +274,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Felix','Stiehler','4df1ee97499d792b84e317e2db00c65e',1,1,1),(2,'Matthias','Theobald','4df1ee97499d792b84e317e2db00c65e',0,1,0),(3,'Meier','John','4df1ee97499d792b84e317e2db00c65e',0,0,1),(4,'test','test','7815696ecbf1c96e6894b779456d330e',1,0,1),(5,'vorname','name','4df1ee97499d792b84e317e2db00c65e',0,1,1),(6,'Geis','Konstantin','4df1ee97499d792b84e317e2db00c65e',0,1,1),(7,'Geis','Konstantin','4df1ee97499d792b84e317e2db00c65e',0,1,1);
+INSERT INTO `user` VALUES (1,'Felix','Stiehler','4df1ee97499d792b84e317e2db00c65e',1,1,1),(2,'Matthias','Theobald','4df1ee97499d792b84e317e2db00c65e',0,0,1),(3,'Meier','John','4df1ee97499d792b84e317e2db00c65e',0,1,0),(4,'test','test','7815696ecbf1c96e6894b779456d330e',1,0,1),(5,'vorname','name','4df1ee97499d792b84e317e2db00c65e',0,1,1),(6,'Geis','Konstantin','4df1ee97499d792b84e317e2db00c65e',0,1,1),(7,'Geis','Konstantin','4df1ee97499d792b84e317e2db00c65e',0,1,1),(8,'Meier','Julian','530ea1472e71035353d32d341ecf6343',0,1,0),(9,'as','ac','0cc175b9c0f1b6a831c399e269772661',1,0,0),(10,'asc','asc','728fddbb8402ac4c8a9cf55206904071',1,0,0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -548,7 +548,7 @@ DELIMITER ;;
                                            IN _jst_id INTEGER UNSIGNED,
                                            IN _description TEXT)
 BEGIN
-  DECLARE job_price FLOAT DEFAULT 0;
+  DECLARE job_price FLOAT(7,2) DEFAULT 0.00;
 
   INSERT INTO job_status (j_id, u_id, jst_id, description, `date`) VALUES (
     _job_id,
@@ -563,7 +563,7 @@ BEGIN
     FROM job_service
     WHERE j_id = _job_id;
 
-    CALL add_cash(_user_id, job_price, concat('Barzahlung Rechnung: ', _job_id));
+    CALL add_cash(_user_id, 'Kassenbeleg', job_price, concat('Barzahlung Rechnung: ', _job_id));
   END IF;
 END */;;
 DELIMITER ;
@@ -640,6 +640,27 @@ BEGIN
       town = _town
   WHERE c_id = _customer_id;
 
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `edit_job_description` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `edit_job_description`(IN _job_id INTEGER UNSIGNED, IN _desc TEXT)
+BEGIN
+  UPDATE job
+  SET description = _desc
+  WHERE j_id = _job_id;
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -894,7 +915,7 @@ BEGIN
          town,
          c_id as customer_id
   FROM customer
-  ORDER BY last_name;
+  ORDER BY last_name, first_name;
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1035,39 +1056,46 @@ DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `get_job_additional_info`(IN _job_id INTEGER UNSIGNED)
 BEGIN
 
-  DECLARE bill_created TINYINT UNSIGNED DEFAULT null;
-  DECLARE paid TINYINT UNSIGNED DEFAULT null;
-  DECLARE finished TINYINT UNSIGNED DEFAULT null;
-  DECLARE customer_listed TINYINT UNSIGNED DEFAULT null;
+  DECLARE bid_created TINYINT UNSIGNED DEFAULT 0;
+  DECLARE bill_created TINYINT  UNSIGNED DEFAULT 0;
+  DECLARE paid TINYINT UNSIGNED DEFAULT 0;
+  DECLARE finished TINYINT  UNSIGNED DEFAULT 0;
+  DECLARE customer_listed TINYINT  UNSIGNED DEFAULT 0;
 
-  SELECT js_id
+  SELECT count(js_id)
+  INTO bid_created
+  FROM job_status
+  WHERE j_id = _job_id
+    AND jst_id = 3;
+
+  SELECT count(js_id)
   INTO bill_created
   FROM job_status
   WHERE j_id = _job_id
     AND jst_id = 9;
 
-
-  SELECT js_id
+  SELECT count(js_id)
   INTO paid
   FROM job_status
   WHERE j_id = _job_id
-    AND jst_id = 10;
+    AND (jst_id = 10 OR jst_id = 12);
 
-  SELECT js_id
+  SELECT count(js_id)
   INTO finished
   FROM job_status
   WHERE j_id = _job_id
     AND jst_id = 11;
 
-  SELECT c_id
+  SELECT count(c_id)
   INTO customer_listed
   FROM customer
   WHERE c_id = (SELECT c_id FROM job WHERE j_id = _job_id);
 
-  SELECT if (bill_created is null, 0, 1) as bill_created,
-         if (paid is null, 0, 1) as paid,
-         if (finished is null, 0, 1) as finished,
-         if (customer_listed is null, 0, 1) as customer_listed;
+  SELECT bid_created,
+         bill_created,
+         paid,
+         finished,
+         customer_listed;
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1348,8 +1376,8 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `get_latest_jobs_count`()
 BEGIN
-  SELECT count(js_id) as `count`
-  FROM job_status;
+  SELECT count(j_id) as `count`
+  FROM job;
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1608,4 +1636,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2009-09-04 17:48:47
+-- Dump completed on 2009-09-06  5:14:38

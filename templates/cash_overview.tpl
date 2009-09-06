@@ -11,7 +11,7 @@
 </div>
 
 <div class="content_part" id="print_cash">
-    <a href="index.php?site=generate_cash_print&date_start={$date_start}&date_limit={$date_limit}">Druckbare Ansicht</a> <br />
+    <a href="index.php?site=generate_cash_print&date_start={$date_start}&date_limit={$date_limit}" target="_blank">Druckbare Ansicht</a> <br />
 </div>
 
 <div class="content_part">

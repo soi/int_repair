@@ -95,12 +95,21 @@
 
 {literal}
     <script language="javascript" type="text/javascript">
-        function set_visibility() {
+        function set_edit_visibility() {
             document.getElementById('job_description').style.display="none";    
             document.getElementById('edit_description_button').style.display="none";    
             document.getElementById('edit_description_field').style.display="block";    
-            document.getElementById('finish_edit_description_button').style.display="block";    
-        }    
+            document.getElementById('finish_edit_description_button').style.display="inline";    
+            document.getElementById('cancel_button').style.display="inline";    
+        } 
+        
+        function set_normal_visibility() {
+            document.getElementById('job_description').style.display="block";
+            document.getElementById('edit_description_button').style.display="block";
+            document.getElementById('edit_description_field').style.display="none";
+            document.getElementById('finish_edit_description_button').style.display="none";
+            document.getElementById('cancel_button').style.display="none";
+        }   
     </script>
 
 {/literal}
@@ -112,12 +121,12 @@
     <div id="job_description">
         {$job_info.description|nl2br}
     </div>
-    
-    <span id="edit_description_button" style="color: #2950FF" onclick="set_visibility()"><br />bearbeiten</span>
+    <input id="edit_description_button" type="button" value="bearbeiten" onclick="set_edit_visibility()"/>
     
     <form action="index.php?site=complete_edit_job_description&job_id={$job_info.job_id}" method="post">
         <textarea id="edit_description_field" name="description" style="display: none;">{$job_info.description}</textarea> 
-        <input id="finish_edit_description_button" type="submit" style="display: none;" value="bearbeiten"/>
+        <input id="finish_edit_description_button" type="submit" style="display: none;" value="speichern"/>
+        <input id="cancel_button" type="button" style="display: none;" value="abbrechen" onclick="set_normal_visibility()"/>
     </form>    
     
 </div>

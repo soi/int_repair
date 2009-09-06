@@ -8,6 +8,7 @@
     <b>Tel. 1:</b> {$customer_info.tel_1}  <br />
     <b>Tel. 2:</b> {$customer_info.tel_2}  <br />
     <b>Fax:</b> {$customer_info.fax} <br />
-    <b>E-mail:</b> {$customer_info.email} <br /> <br />
+    <b>E-mail:</b> {$customer_info.email} <br /> 
+    <b>Nummer:</b> {$customer_info.customer_id}<br /> <br />
     <a href="index.php?site=edit_customer&customer_id={$customer_info.customer_id}">Kontaktdaten bearbeiten</a>  
 </div>

@@ -5,7 +5,7 @@
     {foreach from=$customers item=customer}
         <b>{$customer.form_of_address} {$customer.last_name}</b>
         <br /> 
-        Nr.: {$customer.customer_id} 
+        Nummer: {$customer.customer_id} 
         <br />
         {if $customer.firm_name}
             Firma: {$customer.firm_name}
