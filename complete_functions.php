@@ -322,6 +322,45 @@
         }
         return true;
     }
+    
+    
+    function complete_delete_job_service () {
+        if (valid_request(array(isset($_GET['job_service_id']),
+                                isset($_GET['job_id'])))) {
+                                     
+            global $db;
+            global $smarty;
+            
+            $sql = "delete_job_service(".$_GET['job_service_id'].")";
+            $db->run($sql);
+            if ($db->error_result)
+                 redirect('edit_job', 'job_id='.$_GET['job_id'], '', array(1));
+            else {
+                 redirect('edit_job', 'job_id='.$_GET['job_id'], 'delete_job_service');
+            }
+        }
+        return true;    
+    }
+    
+    
+    
+    function complete_delete_job_status () {
+        if (valid_request(array(isset($_GET['job_status_id']),
+                                isset($_GET['job_id'])))) {
+
+            global $db;
+            global $smarty;
+
+            $sql = "delete_job_status(".$_GET['job_status_id'].")";
+            $db->run($sql);
+            if ($db->error_result)
+                 redirect('edit_job', 'job_id='.$_GET['job_id'], '', array(1));
+            else {
+                 redirect('edit_job', 'job_id='.$_GET['job_id'], 'delete_job_status');
+            }
+        }
+        return true;
+    }
 
 
     function complete_edit_customer() {
@@ -338,59 +377,59 @@
                                 isset($_POST['tel_2']),
                                 isset($_POST['fax']),
                                 isset($_POST['email'])))) {
-        }
 
-        global $db;
-        global $smarty;
-
-        if (strlen($_POST['form_of_address']) > 4)
-            $errors[] = 62;
-        if (strlen($_POST['first_name']) > 45)
-            $errors[] = 52;
-        if (strlen($_POST['last_name']) > 45)
-            $errors[] = 51;
-        if (strlen($_POST['title_addition']) > 20)
-            $errors[] = 53;
-        if (strlen($_POST['firm_name']) > 45)
-            $errors[] = 54;
-        if (strlen($_POST['street']) > 45)
-            $errors[] = 55;
-        if (strlen($_POST['plz']) > 10)
-            $errors[] = 56;
-        if (strlen($_POST['tel_1']) > 20)
-            $errors[] = 57;
-        if (strlen($_POST['tel_2']) > 20)
-            $errors[] = 58;
-        if (strlen($_POST['fax']) > 20)
-            $errors[] = 59;
-        if (strlen($_POST['email']) > 45)
-            $errors[] = 60;
-        if (strlen($_POST['town']) > 45)
-            $errors[] = 61;
-
-        if (isset($errors)) {
-            redirect('edit_customer', 'customer_id='.$_GET['customer_id'], '', $errors);
-            return true;
-        }
-
-        $sql = "edit_customer(".$_GET['customer_id'].",
-                              '".$_POST['form_of_address']."',
-                              '".$_POST['first_name']."',
-                              '".$_POST['last_name']."',
-                              '".$_POST['title_addition']."',
-                              '".$_POST['firm_name']."',
-                              '".$_POST['street']."',
-                              '".$_POST['plz']."',
-                              '".$_POST['tel_1']."',
-                              '".$_POST['tel_2']."',
-                              '".$_POST['fax']."',
-                              '".$_POST['email']."',
-                              '".$_POST['town']."')";
-        $db->run($sql);
-        if ($db->error_result)
-             redirect('customer_overview', '', '', array(1));
-        else {
-             redirect('customer_info', 'customer_id='.$_GET['customer_id'], 'edit_customer');
+            global $db;
+            global $smarty;
+    
+            if (strlen($_POST['form_of_address']) > 4)
+                $errors[] = 62;
+            if (strlen($_POST['first_name']) > 45)
+                $errors[] = 52;
+            if (strlen($_POST['last_name']) > 45)
+                $errors[] = 51;
+            if (strlen($_POST['title_addition']) > 20)
+                $errors[] = 53;
+            if (strlen($_POST['firm_name']) > 45)
+                $errors[] = 54;
+            if (strlen($_POST['street']) > 45)
+                $errors[] = 55;
+            if (strlen($_POST['plz']) > 10)
+                $errors[] = 56;
+            if (strlen($_POST['tel_1']) > 20)
+                $errors[] = 57;
+            if (strlen($_POST['tel_2']) > 20)
+                $errors[] = 58;
+            if (strlen($_POST['fax']) > 20)
+                $errors[] = 59;
+            if (strlen($_POST['email']) > 45)
+                $errors[] = 60;
+            if (strlen($_POST['town']) > 45)
+                $errors[] = 61;
+    
+            if (isset($errors)) {
+                redirect('edit_customer', 'customer_id='.$_GET['customer_id'], '', $errors);
+                return true;
+            }
+    
+            $sql = "edit_customer(".$_GET['customer_id'].",
+                                  '".$_POST['form_of_address']."',
+                                  '".$_POST['first_name']."',
+                                  '".$_POST['last_name']."',
+                                  '".$_POST['title_addition']."',
+                                  '".$_POST['firm_name']."',
+                                  '".$_POST['street']."',
+                                  '".$_POST['plz']."',
+                                  '".$_POST['tel_1']."',
+                                  '".$_POST['tel_2']."',
+                                  '".$_POST['fax']."',
+                                  '".$_POST['email']."',
+                                  '".$_POST['town']."')";
+            $db->run($sql);
+            if ($db->error_result)
+                 redirect('customer_overview', '', '', array(1));
+            else {
+                 redirect('customer_info', 'customer_id='.$_GET['customer_id'], 'edit_customer');
+            }
         }
         return true;    
     }
@@ -537,7 +576,7 @@
             $sql = "add_cash(".$_SESSION['user_id'].",
                              '',
                              ".(str_replace(',', '.', $_POST['reset_status']) - $total['total']).",
-                             'Zur&uuml;ckgesetzt')";
+                             'Leeren Kasse')";
             $db->run($sql);
             if ($db->error_result) {
                 redirect('cash_overview', '', '', array(1));

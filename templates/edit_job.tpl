@@ -105,7 +105,7 @@
         
         function set_normal_visibility() {
             document.getElementById('job_description').style.display="block";
-            document.getElementById('edit_description_button').style.display="block";
+            document.getElementById('edit_description_button').style.display="inline";
             document.getElementById('edit_description_field').style.display="none";
             document.getElementById('finish_edit_description_button').style.display="none";
             document.getElementById('cancel_button').style.display="none";
@@ -121,7 +121,11 @@
     <div id="job_description">
         {$job_info.description|nl2br}
     </div>
-    <input id="edit_description_button" type="button" value="bearbeiten" onclick="set_edit_visibility()"/>
+    
+    <div style="text-align: right;">
+        <a href="#" id="edit_description_button" onclick="set_edit_visibility(); return false;">bearbeiten</a>
+    </div>
+    
     
     <form action="index.php?site=complete_edit_job_description&job_id={$job_info.job_id}" method="post">
         <textarea id="edit_description_field" name="description" style="display: none;">{$job_info.description}</textarea> 
@@ -144,7 +148,8 @@
                 <td>{$status.status_name}</td>
                 <td>{$status.date|date_format:"%d.%m.%y %H:%M"}</td>  
                 <td>{$status.first_name} {$status.last_name}</td> 
-                <td>{$status.description}</td> 
+                <td>{$status.description}</td>
+                <td><a href="index.php?site=complete_delete_job_status&job_status_id={$status.job_status_id}&job_id={$job_info.job_id}"><img src="pics/delete.jpg" border="0" height="16"/></a></td> 
             </tr>
         {/foreach}
     </table>
@@ -186,6 +191,7 @@
                 <td>{$service.date|date_format:"%d.%m.%y %H:%M"}</td>
                 <td>{$service.first_name} {$service.last_name}</td>
                 <td>{$service.description}</td>
+                <td><a href="index.php?site=complete_delete_job_service&job_service_id={$service.job_service_id}&job_id={$job_info.job_id}"><img src="pics/delete.jpg" border="0" height="16"/></a></td>
             </tr>
         {/foreach}
     </table>

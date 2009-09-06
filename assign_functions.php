@@ -187,20 +187,13 @@
      * @return true
     */
 
-    function assign_success_info($success_action, $related_id = 0) {
+    function assign_success_info($success_action) {
 
         global $smarty;
 
         $success_messages = parse_ini_file(SUCCESS_PATH, true); // @todo what if file not exists
         $related_success_messages = $success_messages[$success_action];  // @todo memcache that
-        // array that is to be assigned
-        $success = array();
-        $success['action'] = $related_success_messages['action'];
-        $success['message'] = $related_success_messages['message'];
-        if ($related_id)
-            $success['id'] = $related_id;
-
-        $smarty->assign('success_info', $success);
+        $smarty->assign('success_message', $related_success_messages['message']);
         return true;
     }
     

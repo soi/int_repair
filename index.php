@@ -25,7 +25,9 @@
                                  'edit_job', 
                                  'complete_add_service',
                                  'complete_add_status',
-                                 'complete_add_job', 
+                                 'complete_add_job',
+                                 'complete_delete_job_service',  
+                                 'complete_delete_job_status',  
                                  'complete_edit_job',
                                  'complete_edit_job_description', 
                                  'job_overview', 
@@ -200,6 +202,17 @@
              case 'complete_edit_job_description' :
                 complete_edit_job_description();
                 break;
+                
+            //DELETE 
+            
+            case 'complete_delete_job_service' :
+                complete_delete_job_service();
+                break; 
+                
+            case 'complete_delete_job_status' :
+                complete_delete_job_status();
+                break;
+            
             
             //OVERVIEWS
             
