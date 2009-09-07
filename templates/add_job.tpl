@@ -10,7 +10,7 @@
         <h5>Kunde</h5>
         <select name="customer_id">
             {foreach from=$customers item=customer}
-                <option value="{$customer.customer_id}">{$customer.first_name} {$customer.last_name}</option>
+                <option value="{$customer.customer_id}">{$customer.last_name}, {$customer.first_name} </option>
             {/foreach}
         </select>
         <br />

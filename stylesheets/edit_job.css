@@ -19,6 +19,7 @@
 #job_customer_info {
     width: 400px;
     float: right;
+    height: 208px;
 }
 
 #job_general_info #left {

@@ -13,13 +13,8 @@
         global $db;
         
         $everybody_sites = array('user_overview', 
-                                 'customer_overview', 
-                                 'cash_overview', 
-                                 'job_overview',
-                                 'complete_add_cash', 
-                                 'complete_reset_cash', 
-                                 'latest_jobs', 
-                                 'jobs_latest_changes');                                 
+                                 'add_customer',
+                                 'complete_add_customer'); 
         
         $tech_sites      = array('add_job', 
                                  'edit_job', 
@@ -31,18 +26,19 @@
                                  'complete_edit_job',
                                  'complete_edit_job_description', 
                                  'job_overview', 
-                                 'user_overview');
-                            
-        $managment_sites = array('add_customer',
-                                 'cash_overview',
-                                 'complete_add_customer',
-                                 'complete_edit_customer',
-                                 'customer_info',
-                                 'edit_customer',
-                                 'reports_overview',
-                                 'user_overview', 
                                  'generate_bid',
                                  'generate_bill', 
+                                 'latest_jobs',
+                                 'jobs_latest_changes');
+                            
+        $managment_sites = array(
+                                 'cash_overview',
+                                 'complete_edit_customer',
+                                 'complete_add_cash',
+                                 'complete_reset_cash',
+                                 'customer_overview',
+                                 'customer_info',
+                                 'edit_customer', 
                                  'generate_cash_print');
                                                            
         $admin_sites     = array('add_user', 
@@ -83,7 +79,7 @@
 
     // @todo delete when release
     error_reporting(E_ALL);
-    ini_set('display_errors', 1);
+    ini_set('display_errors', 0);
 
     require('constants.php');
     require(CLASS_PATH.SMARTY_CON_PATH);
@@ -255,6 +251,7 @@
           // GENERATE
           
             case 'generate_bid' :
+                complete_save_bid();
                 display_bid();
                 $smarty->display('bid.tpl');
                 return true;

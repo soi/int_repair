@@ -100,6 +100,7 @@ CREATE TABLE `job` (
   `j_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `short_description` varchar(150) DEFAULT NULL,
   `description` text,
+  `bid` text NOT NULL,
   `date` datetime DEFAULT NULL,
   `bid_needed` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `c_form_of_address` varchar(4) NOT NULL,
@@ -125,7 +126,7 @@ CREATE TABLE `job` (
 
 LOCK TABLES `job` WRITE;
 /*!40000 ALTER TABLE `job` DISABLE KEYS */;
-INSERT INTO `job` VALUES (1,'TV kaputt','TV broken','2009-08-27 20:20:01',0,'Herr',13648,'Felix','Stiehler','','','','','Hellstraße 3','Berlin','','12345','Dr.'),(2,'PC kaputt','PC broken','2009-08-27 22:20:01',0,'',12543,'Felix','Stiehler','','','','','Strasse','','','',''),(12,'Server Farm Aufbau Hohenschönhausen','Lorem ipsum...','2009-08-30 01:59:45',0,'',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692',''),(14,'Server Reperatur','Festplatte muss ausgetauscht werden','2009-08-31 21:40:32',0,'Frau',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692',''),(15,'Computer reparieren','Computer','2009-09-04 16:21:07',1,'Frau',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692',''),(16,'Computer aufbauen','Aufbau','2009-09-04 22:43:07',1,'Frau',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692',''),(17,'Server reparieren','lalala','2009-09-05 05:39:44',0,'Frau',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692',''),(18,'Test','asfaqvqvqwvwv w bwe eb ergbv','2009-09-05 21:18:41',0,'Frau',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692','');
+INSERT INTO `job` VALUES (1,'TV kaputt','TV broken','','2009-08-27 20:20:01',0,'Herr',13648,'Felix','Stiehler','','','','','Hellstraße 3','Berlin','','12345','Dr.'),(2,'PC kaputt','PC broken','','2009-08-27 22:20:01',0,'',12543,'Felix','Stiehler','','','','','Strasse','','','',''),(12,'Server Farm Aufbau Hohenschönhausen','Lorem ipsum...','','2009-08-30 01:59:45',0,'',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692',''),(14,'Server Reperatur','Festplatte muss ausgetauscht werden','','2009-08-31 21:40:32',0,'Frau',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692',''),(15,'Computer reparieren','Computer','','2009-09-04 16:21:07',1,'Frau',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692',''),(16,'Computer aufbauen','Aufbau','','2009-09-04 22:43:07',1,'Frau',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692',''),(17,'Server reparieren','lalala','','2009-09-05 05:39:44',0,'Frau',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692',''),(18,'Test','asfaqvqvqwvwv w bwe eb ergbv','abcgjjvhjgchgchc','2009-09-05 21:18:41',0,'Frau',12544,'Steward','Martha','0152-3645897','0152-3645898','0152-3645899',NULL,'Plötzenstraße 81','Hohenschönhausen','dsagg@afef.fr','45692','');
 /*!40000 ALTER TABLE `job` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +266,7 @@ CREATE TABLE `user` (
   `tech_permission` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `managment_permission` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`u_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -274,7 +275,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Felix','Stiehler','4df1ee97499d792b84e317e2db00c65e',1,1,1),(2,'Matthias','Theobald','4df1ee97499d792b84e317e2db00c65e',0,0,1),(3,'Meier','John','4df1ee97499d792b84e317e2db00c65e',0,1,0),(4,'test','test','7815696ecbf1c96e6894b779456d330e',1,0,1),(5,'vorname','name','4df1ee97499d792b84e317e2db00c65e',0,1,1),(6,'Geis','Konstantin','4df1ee97499d792b84e317e2db00c65e',0,1,1),(7,'Geis','Konstantin','4df1ee97499d792b84e317e2db00c65e',0,1,1),(8,'Meier','Julian','530ea1472e71035353d32d341ecf6343',0,1,0),(9,'as','ac','0cc175b9c0f1b6a831c399e269772661',1,0,0),(10,'asc','asc','728fddbb8402ac4c8a9cf55206904071',1,0,0);
+INSERT INTO `user` VALUES (1,'Felix','Stiehler','4df1ee97499d792b84e317e2db00c65e',1,1,1),(2,'Matthias','Theobald','4df1ee97499d792b84e317e2db00c65e',0,0,1),(3,'Meier','John','4df1ee97499d792b84e317e2db00c65e',0,1,0),(4,'test','test','7815696ecbf1c96e6894b779456d330e',1,0,1),(5,'vorname','name','4df1ee97499d792b84e317e2db00c65e',0,1,1),(6,'Geis','Konstantin','4df1ee97499d792b84e317e2db00c65e',0,1,1),(7,'Geis','Konstantin','4df1ee97499d792b84e317e2db00c65e',0,1,1),(8,'Meier','Julian','530ea1472e71035353d32d341ecf6343',0,1,0),(9,'as','ac','0cc175b9c0f1b6a831c399e269772661',1,0,0),(10,'asc','asc','728fddbb8402ac4c8a9cf55206904071',1,0,0),(11,'t','t','e358efa489f58062f10dd7316b65649e',0,1,0),(12,'m','m','6f8f57715090da2632453988d9a1501b',0,0,1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -635,6 +636,27 @@ DELIMITER ;;
 BEGIN
   DELETE FROM job_status
   WHERE js_id = _js_id;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `edit_bid` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `edit_bid`(IN _job_id INTEGER UNSIGNED, IN _bid TEXT)
+BEGIN
+  UPDATE job
+  SET bid = _bid
+  WHERE j_id = _job_id;
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1157,6 +1179,7 @@ BEGIN
   SELECT j_id as job_id,
          short_description,
          description,
+         bid,
          `date`,
          bid_needed,
          c_id as customer_id,
@@ -1676,4 +1699,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2009-09-07  2:51:07
+-- Dump completed on 2009-09-07 20:51:46

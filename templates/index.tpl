@@ -62,21 +62,32 @@
                 
                 <div id="navi">
                      <ul>
+                        {if $visitor_info.admin_permission || $visitor_info.tech_permission}
                         <li>
                             <a href="index.php?site=job_overview">Auftr&auml;ge</a>
                             <a class="add" href="index.php?site=add_job"><img id="add1" src="pics/add.png" border="0" height="18"  alt="hinzu" onmouseover="active_add('add1')" onmouseout="inactive_add('add1')"/></a>
                         </li>
+                        {/if}
                         <li>
+                            {if $visitor_info.admin_permission || $visitor_info.managment_permission}
                             <a href="index.php?site=customer_overview">Kunden</a>
                             <a class="add" href="index.php?site=add_customer"><img id="add2" src="pics/add.png" border="0" height="18" width="" alt="hinzu" onmouseover="active_add('add2')" onmouseout="inactive_add('add2')"/></a>
+                            {else}
+                            <a href="index.php?site=add_customer">Kunden</a>
+                            {/if}
+                            
                         </li>
                         <li>
                             <a href="index.php?site=user_overview">Mitarbeiter</a>
+                            {if $visitor_info.admin_permission}
                             <a class="add" href="index.php?site=add_user"><img id="add3" src="pics/add.png" border="0" height="18" width="" alt="hinzu" onmouseover="active_add('add3')" onmouseout="inactive_add('add3')"/></a>
+                            {/if}
                         </li>
+                        {if $visitor_info.admin_permission || $visitor_info.managment_permission}
                         <li>
                             <a href="index.php?site=cash_overview">Kasse</a>
                         </li>
+                        {/if}
                         <li>
                             <a href="index.php?site=complete_logout">Logout</a>
                         </li>
@@ -94,7 +105,6 @@
                         {$content}
                     </div>
                     <div id="footer" class="grey_back" align="center">
- 
                     </div>
                 </div>
             </div>

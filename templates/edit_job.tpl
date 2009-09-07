@@ -33,7 +33,7 @@
 
         <h4 id="bid_headline" style="display: none;">KV Beschreibung</h4>
         <form action="index.php?site=generate_bid&job_id={$job_info.job_id}" method="post" target="_blank">
-            <textarea id="bid_text" name="bid_text" style="display: none;"></textarea>
+            <textarea id="bid_text" name="bid_text" style="display: none;">{$job_info.bid}</textarea>
             <input id="finish_bid_button" type="submit" style="display: none;" value="KV anzeigen"/>
             <input id="cancel_bid_button" type="button" style="display: none;" value="abbrechen" onclick="set_normal_bid_visibility()"/>
         </form>
@@ -95,6 +95,7 @@
 </div>
 
 <div class="content_part" id="job_customer_info">
+    {if $visitor_info.admin_permission || $visitor_info.managment_permission}
     <h4>Details des Auftragsgebers zum Zeitpunkt des Auftrags</h4>
     <div id="left">
         <span class="bold">Name:</span> <br />
@@ -123,6 +124,15 @@
         Der Kunde wird nicht mehr gef&uuml;hrt.
         {/if}
     </div>
+    {else}
+    <h4>Auftraggeber</h4>
+    <div id="left">
+        <span class="bold">Name:</span> <br />
+    </div>
+    <div id="right">
+        {$job_info.c_title_addition} {$job_info.c_last_name}, {$job_info.c_first_name} <br />
+    </div>
+    {/if}
     
 </div>
 

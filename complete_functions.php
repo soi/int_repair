@@ -533,7 +533,10 @@
                     else {
                         header('HTTP/1.1 303 See Other ');
                     }
-                    header('Location: index.php?site=job_overview');
+                    if (!$_SESSION['admin_permission'] && !$_SESSION['tech_permission'])
+                        header('Location: index.php?site=cash_overview');
+                    else
+                        header('Location: index.php?site=job_overview');
                 }
             }
             else  {
@@ -588,6 +591,22 @@
             }
         }
         return true;
+    }
+    
+    
+    function complete_save_bid() {
+        if (valid_request(array(isset($_GET['job_id']), isset($_POST['bid_text'])))) {
+
+            global $smarty;
+            global $db;
+            
+            $db->run("edit_bid(".$_GET['job_id'].", '".$_POST['bid_text']."')");
+            if ($db->error_result) {
+                redirect('edit_job', 'job_id='.$_GET['job_id'], '', array(1));
+                return true;
+            }            
+        }
+        return true;    
     }
     
     
