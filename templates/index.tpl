@@ -50,7 +50,7 @@
                 {literal}
                     <script language="javascript" type="text/javascript">
                         function active_add(button) {
-                            document.getElementById(button).src = "pics/addblau.png";
+                            document.getElementById(button).src = "pics/add_active.png";
                         }                          
                         function inactive_add(button) {
                             document.getElementById(button).src = "pics/add.png";

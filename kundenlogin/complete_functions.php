@@ -27,8 +27,8 @@
             global $db;
             global $smarty;
                                       
-            //getting the name parts  
-            if (!preg_match('/^[a-zA-Z\x80-\xFF]+\.{1}[a-zA-Z\x80-\xFF]+$/', $_POST['login'])) {
+            //getting the name parts 
+            if (!preg_match('/^[a-zA-Z\x80-\xFF]+\.{1}[a-zA-Z\x80-\xFF]+$/', trim($_POST['login']))) {
                 $smarty->assign('message', 'Ihr Login musst das Format \'Vorname.Nachname\' haben (z.B. Hans.Meier).');
                 $smarty->display('login.tpl');
                 return true;
